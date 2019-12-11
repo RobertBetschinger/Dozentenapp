@@ -1,0 +1,145 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		
+		<title>Frage bearbeiten</title>
+		
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+		<script type="text/javascript" charset="utf-8" src="cordova-1.5.0.js"></script>      
+        <script type="text/javascript" charset="utf-8">
+
+			document.addEventListener("deviceready", onDeviceReady, true);
+		
+             function onLoad()
+             {
+                  document.addEventListener("deviceready", onDeviceReady, true);
+             }
+
+             function onDeviceReady()
+             {
+                  // navigator.notification.alert("PhoneGap is working");
+				  document.addEventListener("offline", onOffline, false);
+				  document.addEventListener("online", onOnline, false);
+             }
+			 
+			 function callLastPage()
+             {
+				  window.location = "existing_questions_page.html";
+             }
+			 
+			 function onOffline() {
+				alert("Keine Internetverbindung! App nur eingeschränkt verwendungsfähig.");
+			}
+			
+			function onOnline() {
+				alert("Internetverbindung wieder vorhanden.");
+			}
+
+        </script>
+	</head>
+	<body>
+		<div id="nav_bar">
+			<button id="nav_back_button" type="button" onclick="callLastPage()"><img id="arrow_back" src="images/arrow_left_black.svg" alt="Back"></button>
+		</div>
+	
+		<div id="content_editQuestion">
+			<p><b>Frage bearbeiten:</b></p>
+		</div>
+		
+		<script type="text/javascript">
+			$.getJSON("http://pcrw00023.uni-regensburg.de:10080/php/get_json_from_db.php", function( data ) {
+				
+					var json = JSON.parse(data.JSON_from_Server[0].JSON_File);
+					
+					var toAdd = '<form onsubmit="editQuestion(this); return false;">' +
+								"<label>Frage: </label>" + '<input type="text" name="q" class="form-control" value="' + json.categories[localStorage.category - 1].questions[localStorage.question].q + '"/>' + "<br />" +   
+								"<label>Antwort: </label>" + '<input type="text" name="ca" class="form-control" value="' + json.categories[localStorage.category - 1].questions[localStorage.question].ca + '"/>' + "<br />" +  
+								"<label>Falsche erste Antwort: </label>" + '<input type="text" name="wa01" class="form-control" value="' + json.categories[localStorage.category - 1].questions[localStorage.question].wa01 + '"/>' + "<br />" + 
+								"<label>Falsche zweite Antwort: </label>" + '<input type="text" name="wa02" class="form-control" value="' + json.categories[localStorage.category - 1].questions[localStorage.question].wa02 + '"/>' + "<br />" + 
+								"<label>Falsche dritte Antwort: </label>" + '<input type="text" name="wa03" class="form-control" value="' + json.categories[localStorage.category - 1].questions[localStorage.question].wa03 + '"/>' + "<br />" + 
+								'<input type="submit" name="submit" value="Ändern" class="submit_button" />' + "<br />" + 
+								"</form>";
+					$(toAdd).appendTo("#content_editQuestion");
+			});
+			
+			var noError = "<b>" + "<font color='green'>" + "Frage geändert!" + "</font>" + "</b>" + "<br/>";
+			var error = "<b>" + "<font color='red'>" + "Alle Eingabefelder ausfüllen!" + "</font>" + "</b>" + "<br/>";
+			
+			function editQuestion(form){
+			
+				var missingInput = false;
+			
+				if(form.q.value == ""){
+					missingInput = true;
+				}
+				if(form.ca.value == "") {
+					missingInput = true;
+				}
+				if(form.wa01.value == "") {
+					missingInput = true;
+				}
+				if(form.wa02.value == "") {
+					missingInput = true;
+				}
+				if(form.wa03.value == "") {
+					missingInput = true;
+				}
+			
+				var newJson = {
+					"q": form.q.value,
+					"ca": form.ca.value,
+					"wa01": form.wa01.value,
+					"wa02": form.wa02.value,
+					"wa03":form.wa03.value
+				};
+				
+				if(missingInput == false){
+				
+					var formData = JSON.stringify(newJson);
+					
+					//alert(formData);
+					
+					formData = JSON.parse(formData);
+			
+					var jsonIssues = {};
+		
+					$.ajax({
+						url: "http://pcrw00023.uni-regensburg.de:10080/php/get_json_from_db.php",
+						async: false,
+						dataType: 'json',
+						success: function(data) {
+							jsonIssues = data;
+						}
+					});
+				
+					var myJSON = JSON.parse(jsonIssues.JSON_from_Server[0].JSON_File);
+					
+					myJSON.categories[localStorage.category - 1].questions.splice(localStorage.question, 1, formData);
+					
+					myJSON = JSON.stringify(myJSON);
+					
+					$.ajax({
+						type: "POST",
+						dataType: "json",
+						url: "http://pcrw00023.uni-regensburg.de:10080/php/save_json_in_db.php",
+						data: {Input_data:myJSON},
+						success: function(data){
+						},
+						error: function(e){
+							console.log(e.message);
+						}
+					});
+
+					document.getElementById("content_editQuestion").innerHTML = noError;
+				} else {
+					document.getElementById("content_editQuestion").innerHTML = error;
+				}
+			
+				
+			}
+		</script>
+		
+	</body>
+</html>

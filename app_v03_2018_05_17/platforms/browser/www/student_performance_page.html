@@ -1,0 +1,342 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Studentenleistungen</title>
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+	
+		<script type="text/javascript" charset="utf-8" src="cordova-1.5.0.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+		
+		<script type="text/javascript" charset="utf-8">
+
+			document.addEventListener("deviceready", onDeviceReady, true);
+		
+             function onLoad()
+             {
+                  document.addEventListener("deviceready", onDeviceReady, true);
+             }
+
+             function onDeviceReady()
+             {
+                  // navigator.notification.alert("PhoneGap is working");
+				  document.addEventListener("offline", onOffline, false);
+				  document.addEventListener("online", onOnline, false);
+             }
+			 function callMainMenu()
+             {
+                window.location = "index.html";
+             }
+			 
+			 function onOffline() {
+				alert("Keine Internetverbindung! App nur eingeschränk verwendungsfähig.");
+			}
+			
+			function onOnline() {
+				alert("Internetverbindung wieder vorhanden.");
+			}
+			 
+        </script>
+	
+	</head>
+	
+	<body>
+		
+		<div id="nav_bar">
+			<button id="nav_back_button" type="button" onclick="callMainMenu()"><img id="arrow_back" src="images/arrow_left_black.svg" alt="Back"></button>
+		</div>	
+	
+		<div id="content_studentPerformance">
+		
+		<h1>Leistungsübersicht:</h1>
+		
+		<p>Hier wird Ihnen eine Übersicht über die Leistung der Studierenden gegeben.</p>
+		
+		<div id="category_1">
+			<button id="button_c1" class="category_button" type="button" onclick="buttonC1click()"><img id="arrow_C1" class="arrow_down" src="images/arrow_down_black.svg" alt="unfold"><span></span></button>
+			<p class="space"></p>
+			<div id="diagramSpace_c1" class="chartholder"></div>
+		</div>
+
+		<div id="category_2">
+			<button id="button_c2" class="category_button" type="button" onclick="buttonC2click()"><img id="arrow_C2" class="arrow_down" src="images/arrow_down_black.svg" alt="unfold"><span></span></button>
+			<p class="space"></p>
+			<div id="diagramSpace_c2" class="chartholder"></div>
+		</div>
+		
+		<div id="category_3">
+			<button id="button_c3" class="category_button" type="button" onclick="buttonC3click()"><img id="arrow_C3" class="arrow_down" src="images/arrow_down_black.svg" alt="unfold"><span></span></button>
+			<p class="space"></p>
+			<div id="diagramSpace_c3" class="chartholder"></div>
+		</div>
+		
+		<div id="category_4">
+			<button id="button_c4" class="category_button" type="button" onclick="buttonC4click()"><img id="arrow_C4" class="arrow_down" src="images/arrow_down_black.svg" alt="unfold"><span></span></button>
+			<p class="space"></p>
+			<div id="diagramSpace_c4" class="chartholder"></div>
+		</div>
+		
+		<div id="category_5">
+			<button id="button_c5" class="category_button" type="button" onclick="buttonC5click()"><img id="arrow_C5" class="arrow_down" src="images/arrow_down_black.svg" alt="unfold"><span></span></button>
+			<p class="space"></p>
+			<div id="diagramSpace_c5" class="chartholder"></div>
+		</div>
+		
+		<div id="category_6">
+			<button id="button_c6" class="category_button" type="button" onclick="buttonC6click()"><img id="arrow_C6" class="arrow_down" src="images/arrow_down_black.svg" alt="unfold"><span></span></button>
+			<p class="space"></p>
+			<div id="diagramSpace_c6" class="chartholder"></div>
+		</div>
+		
+		<div id="category_7">
+			<button id="button_c7" class="category_button" type="button" onclick="buttonC7click()"><img id="arrow_C7" class="arrow_down" src="images/arrow_down_black.svg" alt="unfold"><span></span></button>
+			<p class="space"></p>
+			<div id="diagramSpace_c7" class="chartholder"></div>
+		</div>
+		
+		<div id="category_8">
+			<button id="button_c8" class="category_button" type="button" onclick="buttonC8click()"><img id="arrow_C8" class="arrow_down" src="images/arrow_down_black.svg" alt="unfold"><span></span></button>
+			<p class="space"></p>
+			<div id="diagramSpace_c8" class="chartholder"></div>
+		</div>
+		
+		<script type="text/javascript">
+			var buttonC1clicked = false;
+			var buttonC2clicked = false;
+			var buttonC3clicked = false;
+			var buttonC4clicked = false;
+			var buttonC5clicked = false;
+			var buttonC6clicked = false;
+			var buttonC7clicked = false;
+			var buttonC8clicked = false;
+		
+			$(document).ready(function(){
+				
+				$.getJSON("http://pcrw00023.uni-regensburg.de:10080/php/get_json_from_db.php", function( data ) {
+				
+					var json = JSON.parse(data.JSON_from_Server[0].JSON_File);
+				
+					$('#category_1 > button > span').text(json.categories[0].category_name);
+					
+					$('#category_2 > button > span').text(json.categories[1].category_name);
+					
+					$('#category_3 > button > span').text(json.categories[2].category_name);
+					
+					$('#category_4 > button > span').text(json.categories[3].category_name);
+					
+					$('#category_5 > button > span').text(json.categories[4].category_name);
+					
+					$('#category_6 > button > span').text(json.categories[5].category_name);
+					
+					$('#category_7 > button > span').text(json.categories[6].category_name);
+					
+					$('#category_8 > button > span').text(json.categories[7].category_name);
+				
+				});
+			
+			})
+			
+			function buttonC1click(){
+				if(buttonC1clicked == false){
+					button_c1.style.background = "#aea700";
+					document.getElementById("arrow_C1").src = "images/arrow_right_black.svg";
+					buttonC1clicked = true;
+					document.getElementById("diagramSpace_c1").innerHTML = 
+					'<div id="piechartC1"" class="chart"></div>';
+					drawDiagram(1);
+				} else {
+					button_c1.style.background = "#bdc3c7";
+					document.getElementById("arrow_C1").src = "images/arrow_down_black.svg";
+					buttonC1clicked = false;
+					document.getElementById("diagramSpace_c1").innerHTML = "";
+				}
+			}
+			
+			function buttonC2click(){
+				if(buttonC2clicked == false){
+					button_c2.style.background = "#aea700";
+					document.getElementById("arrow_C2").src = "images/arrow_right_black.svg";
+					buttonC2clicked = true;
+					document.getElementById("diagramSpace_c2").innerHTML =
+					'<div id="piechartC2"" class="chart"></div>';
+					drawDiagram(2);
+				} else {
+					button_c2.style.background = "#bdc3c7";
+					document.getElementById("arrow_C2").src = "images/arrow_down_black.svg";
+					buttonC2clicked = false;
+					document.getElementById("diagramSpace_c2").innerHTML = "";
+				}
+			}
+			
+			function buttonC3click(){
+				if(buttonC3clicked == false){
+					button_c3.style.background = "#aea700";
+					document.getElementById("arrow_C3").src = "images/arrow_right_black.svg";
+					buttonC3clicked = true;
+					document.getElementById("diagramSpace_c3").innerHTML =
+					'<div id="piechartC3"" class="chart"></div>';
+					drawDiagram(3);
+				} else {
+					button_c3.style.background = "#bdc3c7";
+					document.getElementById("arrow_C3").src = "images/arrow_down_black.svg";
+					buttonC3clicked = false;
+					document.getElementById("diagramSpace_c3").innerHTML = "";
+				}
+			}
+			
+			function buttonC4click(){
+				if(buttonC4clicked == false){
+					button_c4.style.background = "#aea700";
+					document.getElementById("arrow_C4").src = "images/arrow_right_black.svg";
+					buttonC4clicked = true;
+					document.getElementById("diagramSpace_c4").innerHTML =
+					'<div id="piechartC4"" class="chart"></div>';
+					drawDiagram(4);
+				} else {
+					button_c4.style.background = "#bdc3c7";
+					document.getElementById("arrow_C4").src = "images/arrow_down_black.svg";
+					buttonC4clicked = false;
+					document.getElementById("diagramSpace_c4").innerHTML = "";
+				}
+			}
+			
+			function buttonC5click(){
+				if(buttonC5clicked == false){
+					button_c5.style.background = "#aea700";
+					document.getElementById("arrow_C5").src = "images/arrow_right_black.svg";
+					buttonC5clicked = true;
+					document.getElementById("diagramSpace_c5").innerHTML =
+					'<div id="piechartC5"" class="chart"></div>';
+					drawDiagram(5);
+				} else {
+					button_c5.style.background = "#bdc3c7";
+					document.getElementById("arrow_C5").src = "images/arrow_down_black.svg";
+					buttonC5clicked = false;
+					document.getElementById("diagramSpace_c5").innerHTML = "";
+				}
+			}
+			
+			function buttonC6click(){
+				if(buttonC6clicked == false){
+					button_c6.style.background = "#aea700";
+					document.getElementById("arrow_C6").src = "images/arrow_right_black.svg";
+					buttonC6clicked = true;
+					document.getElementById("diagramSpace_c6").innerHTML =
+					'<div id="piechartC6"" class="chart"></div>';
+					drawDiagram(6);
+				} else {
+					button_c6.style.background = "#bdc3c7";
+					document.getElementById("arrow_C6").src = "images/arrow_down_black.svg";
+					buttonC6clicked = false;
+					document.getElementById("diagramSpace_c6").innerHTML = "";
+				}
+			}
+			
+			function buttonC7click(){
+				if(buttonC7clicked == false){
+					button_c7.style.background = "#aea700";
+					document.getElementById("arrow_C7").src = "images/arrow_right_black.svg";
+					buttonC7clicked = true;
+					document.getElementById("diagramSpace_c7").innerHTML =
+					'<div id="piechartC7"" class="chart"></div>';
+					drawDiagram(7);
+				} else {
+					button_c7.style.background = "#bdc3c7";
+					document.getElementById("arrow_C7").src = "images/arrow_down_black.svg";
+					buttonC7clicked = false;
+					document.getElementById("diagramSpace_c7").innerHTML = "";
+				}
+			}
+			
+			function buttonC8click(){
+				if(buttonC8clicked == false){
+					button_c8.style.background = "#aea700";
+					document.getElementById("arrow_C8").src = "images/arrow_right_black.svg";
+					buttonC8clicked = true;
+					document.getElementById("diagramSpace_c8").innerHTML =
+					'<div id="piechartC8"" class="chart"></div>';
+					drawDiagram(8);
+				} else {
+					button_c8.style.background = "#bdc3c7";
+					document.getElementById("arrow_C8").src = "images/arrow_down_black.svg";
+					buttonC8clicked = false;
+					document.getElementById("diagramSpace_c8").innerHTML = "";
+				}
+			}
+		</script>
+		
+		<script type="text/javascript">
+		
+			function drawDiagram(cID){
+			
+				var section = "";
+				
+				if(cID == 1){
+					section = "piechartC1";
+				}
+				if(cID == 2){
+					section = "piechartC2";
+				}
+				if(cID == 3){
+					section = "piechartC3";
+				}
+				if(cID == 4){
+					section = "piechartC4";
+				}
+				if(cID == 5){
+					section = "piechartC5";
+				}
+				if(cID == 6){
+					section = "piechartC6";
+				}
+				if(cID == 7){
+					section = "piechartC7";
+				}
+				if(cID == 8){
+					section = "piechartC8";
+				}
+				
+				$(document).ready(function(){
+				$.getJSON("http://pcrw00023.uni-regensburg.de:10080/JSON/pieData.json", function( data ) {
+						
+						var u50 = data.dataAll[cID - 1].data.u50;
+						var n5040 = data.dataAll[cID - 1].data.n5040;
+						var n4030 = data.dataAll[cID - 1].data.n4030;
+						var n3020 = data.dataAll[cID - 1].data.n3020;
+						var n2010 = data.dataAll[cID - 1].data.n2010;
+						var ue10 = data.dataAll[cID - 1].data.ue10;
+						
+						  google.charts.load('current', {'packages':['corechart']});
+						  google.charts.setOnLoadCallback(drawChart);
+
+						  function drawChart() {
+							
+							var data = google.visualization.arrayToDataTable([
+							  ['Anteil falscher Antworten', 'Anzahl Studierender'],
+							  ['>50%', parseInt(u50)],
+							  ['50-40%', parseInt(n5040)],
+							  ['40-30%', parseInt(n4030)],
+							  ['30-20%', parseInt(n3020)],
+							  ['20-10%', parseInt(n2010)],
+							  ['<10%', parseInt(ue10)]
+							]);
+
+							var options = {
+							  title: 'Anteil falscher Antworten'
+							};
+
+							var chart = new google.visualization.PieChart(document.getElementById(section));
+
+							chart.draw(data, options);
+						  }
+				});
+				})
+			}
+			
+		</script>
+		</div>
+		
+	</body>
+</html>

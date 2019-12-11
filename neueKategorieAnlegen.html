@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+    <title>Neue Kategorie anlegen</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <link rel="stylesheet" href="css/SplitSided.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    
+    
+</head>
+<body>
+        <div id="nav_bar" >
+                <button id="nav_back_button" type="button" onclick="callMainMenu()"><img id="arrow_back" src="images/arrow_left_black.svg" alt="Back"></button>
+            </div>
+
+        <div class="container">
+                <div class="split left">
+                  <h1>Neue Unterkategorie anlegen</h1>
+                  <a class="button">
+                  <p>Wählen Sie in welche Überkategorie sie ergänzen wollen! </p>
+
+                <form id="UnterkategorieForm" name="UnterkategorieForm"">
+                  <select id="selectCategorys" name="selectCategorys" size="1">
+                    </select>
+                    <input type="text" name="Unter" placeholder="Unterkategorie">
+                    <input type="submit"  value="Hinzufügen" class="submit_button"/>
+                    
+                </form> 
+               
+                  </a>
+                </div>
+
+                <div class="split right">
+                  <h1>Neue Überkategorie anlegen</h1>
+                  <a href="#" class="button">
+                    <p>Geben sie an wie die neue Überkategorie heißen soll!
+
+                        <form name="ÜberkategorieForm"action="#" onsubmit="formValidatationÜberkategorie();">
+                            <br>
+                                <input type="text" name="Überkategorie" placeholder="Überkategorie">
+                                <br>
+                                <br>
+                                
+                                <br>
+                                <input type="submit" name="submit" value="Hinzufügen" class="submit_button" onsubmit="consoleLog();" />
+                            
+                        </form>
+                    </p>
+                     
+                   
+
+                  </a>
+                </div>
+              </div>
+    
+    
+
+              <script src ="js/main.js"></script>
+              <script>
+              function formValidatationUnterkategorie(){
+                console.log("Test der Validation Unterkategorie")
+                  var x = document.forms["UnterkategorieForm"]["Unter"].value;
+                  if(x==""){
+                    window.alert("Bitte geben sie eine Unterkategorie ein.");
+                   return false;
+                  }
+              }
+
+              function formValidatationÜberkategorie(){
+                console.log("Test der Validation Überkategoire")
+                  var x = document.forms["ÜberkategorieForm"]["Überkategorie"].value;
+                  if(x==""){
+                    window.alert("Bitte geben sie eine Überkategorie ein.");
+                   return false;
+                  }
+              }
+
+             
+              function testfunktion() {
+                      window.alert(document.getElementById("selectNumber").value); // -> Liefert value;
+                      var selectBox = document.getElementById("selectNumber");
+                      var op = selectBox.options[selectBox.selectedIndex];
+                      
+                      window.alert(op);
+                      
+                  }
+              </script>
+</body>
+
+</html>

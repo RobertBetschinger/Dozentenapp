@@ -1,0 +1,295 @@
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>JSON_Test</title>
+	<script src="jquery-1.8.3.min.js"></script>
+	
+	<!--
+		icon authors:
+		arrow_down: Icons made by "https://www.flaticon.com/authors/dave-gandy" Dave Gandy from "https://www.flaticon.com/" www.flaticon.com is licensed by "http://creativecommons.org/licenses/by/3.0/" CC 3.0
+		arrow_right: Icons made by "https://www.flaticon.com/authors/dave-gandy" Dave Gandy from "https://www.flaticon.com/" www.flaticon.com is licensed by "http://creativecommons.org/licenses/by/3.0/" CC 3.0
+	-->
+
+	<style>
+	
+		body{
+		margin-left: 0;
+		margin-top: 0;
+		margin-right: 0;
+		font-family: Arial, "Arial", sans-serif;
+		font-size: 100%;
+		}
+		
+		#content_existingQuestions{
+		/*margin-top: 5%;*/
+		margin-left: 5%;
+		margin-right: 5%;
+		}
+
+		.category_button{
+			width: 100%;
+			height: 3.5em;
+			margin-top: 0;
+			margin-bottom: 0;
+			border: none;
+			background-color: #bdc3c7;
+			color: black;
+			padding: 1em;
+			text-align: left;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 1em;
+		}
+		
+		.p_existing_questions{
+			margin-top:0;
+			margin-left: 1%;
+			/*
+			background-color: #f2f3f4;
+			padding-left: 2%;
+			*/
+		}
+
+		.arrow_down{
+			float: left;
+			height: 80%;
+			margin-right: 2%;
+		}
+	
+	</style>
+</head>
+
+
+<body>
+	<div id="content_existingQuestions">
+	
+	<h1>Existierende Fragen:</h1>
+	
+	<p>Hier können Sie bestehende Fragen einsehen.</p>
+	
+	<div id="category_1">
+		<button id="button_c1" class="category_button" type="button" onclick="buttonC1click()"><img id="arrow_C1" class="arrow_down" src="arrow_down_black.svg" alt="unfold"><span></span></button>
+		<p class="p_existing_questions" id="content_C1"></p>
+	</div>
+
+	<div id="category_2">
+		<button id="button_c2" class="category_button" type="button" onclick="buttonC2click()"><img id="arrow_C2" class="arrow_down" src="arrow_down_black.svg" alt="unfold"><span></span></button>
+		<p class="p_existing_questions" id="content_C2"></p>
+	</div>
+	
+	<div id="category_3">
+		<button id="button_c3" class="category_button" type="button" onclick="buttonC3click()"><img id="arrow_C3" class="arrow_down" src="arrow_down_black.svg" alt="unfold"><span></span></button>
+		<p class="p_existing_questions" id="content_C3"></p>
+	</div>
+	
+	<div id="category_4">
+		<button id="button_c4" class="category_button" type="button" onclick="buttonC4click()"><img id="arrow_C4" class="arrow_down" src="arrow_down_black.svg" alt="unfold"><span></span></button>
+		<p class="p_existing_questions" id="content_C4"></p>
+	</div>
+	
+	<div id="category_5">
+		<button id="button_c5" class="category_button" type="button" onclick="buttonC5click()"><img id="arrow_C5" class="arrow_down" src="arrow_down_black.svg" alt="unfold"><span></span></button>
+		<p class="p_existing_questions" id="content_C5"></p>
+	</div>
+	
+	<div id="category_6">
+		<button id="button_c6" class="category_button" type="button" onclick="buttonC6click()"><img id="arrow_C6" class="arrow_down" src="arrow_down_black.svg" alt="unfold"><span></span></button>
+		<p class="p_existing_questions" id="content_C6"></p>
+	</div>
+	
+	
+				
+	<script type="text/javascript">
+	
+		var buttonC1clicked = false;
+		var buttonC2clicked = false;
+		var buttonC3clicked = false;
+		var buttonC4clicked = false;
+		var buttonC5clicked = false;
+		var buttonC6clicked = false;
+	
+		$(document).ready(function(){
+			
+			$.getJSON( "categories.json", function( data ) {
+			
+				$('#category_1 > button > span').text(data.categories[0].category_name);
+				
+				$('#category_2 > button > span').text(data.categories[1].category_name);
+				
+				$('#category_3 > button > span').text(data.categories[2].category_name);
+				
+				$('#category_4 > button > span').text(data.categories[3].category_name);
+				
+				$('#category_5 > button > span').text(data.categories[4].category_name);
+				
+				$('#category_6 > button > span').text(data.categories[5].category_name);
+			
+			});
+		
+		})
+	
+		function buttonC1click(){
+			if(buttonC1clicked == false){
+				button_c1.style.background = "#aea700";
+				document.getElementById("arrow_C1").src = "arrow_right_black.svg";
+				buttonC1clicked = true;
+				$(function() {
+
+					$.getJSON('categories.json', function(data) {
+					   $.each(data.categories[0].questions, function(i, f) {
+						  var toAdd = "<br>" + "Frage: " + f.q + "<br>" +
+						   "Antwort: " + f.ca + "<br>" + "Falsche erste Antwort: " + f.wa01 + "<br>" + "Falsche zweite Antwort: " + f.wa02 + "<br>" 
+						   + "Falsche dritte Antwort: " + f.wa03 + "<br>"
+						   $(toAdd).appendTo("#category_1 p");
+					  });
+
+					});
+
+				});
+				
+			} else {
+				button_c1.style.background = "#bdc3c7";
+				document.getElementById("arrow_C1").src = "arrow_down_black.svg";
+				buttonC1clicked = false;
+				document.getElementById("content_C1").innerHTML = "";
+			}
+		}
+		
+		function buttonC2click(){
+			if(buttonC2clicked == false){
+				button_c2.style.background = "#aea700";
+				document.getElementById("arrow_C2").src = "arrow_right_black.svg";
+				buttonC2clicked = true;
+				$(function() {
+
+					$.getJSON('categories.json', function(data) {
+					   $.each(data.categories[1].questions, function(i, f) {
+						  var toAdd = "<br>" + "Frage: " + f.q + "<br>" +
+						   "Antwort: " + f.ca + "<br>" + "Falsche erste Antwort: " + f.wa01 + "<br>" + "Falsche zweite Antwort: " + f.wa02 + "<br>" 
+						   + "Falsche dritte Antwort: " + f.wa03 + "<br>"
+						   $(toAdd).appendTo("#category_2 p");
+					  });
+
+					});
+
+				});
+			} else {
+				button_c2.style.background = "#bdc3c7";
+				document.getElementById("arrow_C2").src = "arrow_down_black.svg";
+				buttonC2clicked = false;
+				document.getElementById("content_C2").innerHTML = "";
+			}
+		}
+		
+		function buttonC3click(){
+			if(buttonC3clicked == false){
+				button_c3.style.background = "#aea700";
+				document.getElementById("arrow_C3").src = "arrow_right_black.svg";
+				buttonC3clicked = true;
+				$(function() {
+
+					$.getJSON('categories.json', function(data) {
+					   $.each(data.categories[2].questions, function(i, f) {
+						  var toAdd = "<br>" + "Frage: " + f.q + "<br>" +
+						   "Antwort: " + f.ca + "<br>" + "Falsche erste Antwort: " + f.wa01 + "<br>" + "Falsche zweite Antwort: " + f.wa02 + "<br>" 
+						   + "Falsche dritte Antwort: " + f.wa03 + "<br>"
+						   $(toAdd).appendTo("#category_3 p");
+					  });
+
+					});
+
+				});
+			} else {
+				button_c3.style.background = "#bdc3c7";
+				document.getElementById("arrow_C3").src = "arrow_down_black.svg";
+				buttonC3clicked = false;
+				document.getElementById("content_C3").innerHTML = "";
+			}
+		}
+		
+		function buttonC4click(){
+			if(buttonC4clicked == false){
+				button_c4.style.background = "#aea700";
+				document.getElementById("arrow_C4").src = "arrow_right_black.svg";
+				buttonC4clicked = true;
+				$(function() {
+
+					$.getJSON('categories.json', function(data) {
+					   $.each(data.categories[3].questions, function(i, f) {
+						  var toAdd = "<br>" + "Frage: " + f.q + "<br>" +
+						   "Antwort: " + f.ca + "<br>" + "Falsche erste Antwort: " + f.wa01 + "<br>" + "Falsche zweite Antwort: " + f.wa02 + "<br>" 
+						   + "Falsche dritte Antwort: " + f.wa03 + "<br>"
+						   $(toAdd).appendTo("#category_4 p");
+					  });
+
+					});
+
+				});
+			} else {
+				button_c4.style.background = "#bdc3c7";
+				document.getElementById("arrow_C4").src = "arrow_down_black.svg";
+				buttonC4clicked = false;
+				document.getElementById("content_C4").innerHTML = "";
+			}
+		}
+		
+		function buttonC5click(){
+			if(buttonC5clicked == false){
+				button_c5.style.background = "#aea700";
+				document.getElementById("arrow_C5").src = "arrow_right_black.svg";
+				buttonC5clicked = true;
+				$(function() {
+
+					$.getJSON('categories.json', function(data) {
+					   $.each(data.categories[4].questions, function(i, f) {
+						  var toAdd = "<br>" + "Frage: " + f.q + "<br>" +
+						   "Antwort: " + f.ca + "<br>" + "Falsche erste Antwort: " + f.wa01 + "<br>" + "Falsche zweite Antwort: " + f.wa02 + "<br>" 
+						   + "Falsche dritte Antwort: " + f.wa03 + "<br>"
+						   $(toAdd).appendTo("#category_5 p");
+					  });
+
+					});
+
+				});
+			} else {
+				button_c5.style.background = "#bdc3c7";
+				document.getElementById("arrow_C5").src = "arrow_down_black.svg";
+				buttonC5clicked = false;
+				document.getElementById("content_C5").innerHTML = "";
+			}
+		}
+		
+		function buttonC6click(){
+			if(buttonC6clicked == false){
+				button_c6.style.background = "#aea700";
+				document.getElementById("arrow_C6").src = "arrow_right_black.svg";
+				buttonC6clicked = true;
+				$(function() {
+
+					$.getJSON('categories.json', function(data) {
+					   $.each(data.categories[5].questions, function(i, f) {
+						  var toAdd = "<br>" + "Frage: " + f.q + "<br>" +
+						   "Antwort: " + f.ca + "<br>" + "Falsche erste Antwort: " + f.wa01 + "<br>" + "Falsche zweite Antwort: " + f.wa02 + "<br>" 
+						   + "Falsche dritte Antwort: " + f.wa03 + "<br>"
+						   $(toAdd).appendTo("#category_6 p");
+					  });
+
+					});
+
+				});
+			} else {
+				button_c6.style.background = "#bdc3c7";
+				document.getElementById("arrow_C6").src = "arrow_down_black.svg";
+				buttonC6clicked = false;
+				document.getElementById("content_C6").innerHTML = "";
+			}
+		}
+	
+	</script>
+	
+	</div>
+	
+</body>
+
+</html>
