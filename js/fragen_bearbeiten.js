@@ -1,6 +1,4 @@
 var select = document.getElementById("selectCategorys");
-
-  
     function loadData(){
         console.log("loadData")
     $.ajax({
@@ -112,6 +110,7 @@ var select = document.getElementById("selectCategorys");
             document.forms["FragenForm"]["Wahrheit2"].value =json.answers[1].trueOrFalse;
             document.forms["FragenForm"]["Wahrheit3"].value =json.answers[2].trueOrFalse;
             document.forms["FragenForm"]["Wahrheit4"].value =json.answers[3].trueOrFalse;
+            document.forms["FragenForm"]["id"].value =json._id;
             document.forms["FragenForm"]["index"].value = index;
     }
 
@@ -145,12 +144,7 @@ var select = document.getElementById("selectCategorys");
         else{
             console.log("Ende der Fragen erreicht.")
         }
-       
-
     }
-
-
-
 
     function loadQuestions(cValue,sValue){
     return new Promise((resolve,reject)=>{
@@ -184,6 +178,135 @@ var select = document.getElementById("selectCategorys");
           }
       })
     })
+    }
+
+    const myForm = document.getElementById("FragenForm");
+    
+    myForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        
+
+        var x = document.forms["FragenForm"]["FragenText"].value;
+        var y = document.forms["FragenForm"]["Antwort1"].value;
+        var z = document.forms["FragenForm"]["Antwort2"].value;
+        var ü = document.forms["FragenForm"]["Antwort3"].value;
+        var l = document.forms["FragenForm"]["Antwort4"].value;
+        var questionID = document.forms["FragenForm"]["id"].value;
+
+        if (formValidation(x, y, z, ü, l)) {
+
+            boolean = turnBackRadioButton(document.getElementsByName('Wahrheit1'));
+            boolean1 = turnBackRadioButton(document.getElementsByName('Wahrheit2'));
+            boolean2 = turnBackRadioButton(document.getElementsByName('Wahrheit3'));
+            boolean3 = turnBackRadioButton(document.getElementsByName('Wahrheit4'));
+
+            var subcategory_id = document.getElementById("selectCategorys").value;
+             sValue = $("option:selected", select).text()
+            console.log(sValue)
+            var selectBox = document.getElementById("selectCategorys");
+            var op = selectBox.options[selectBox.selectedIndex];
+            var optgroup = op.parentNode;
+
+            var category_id = optgroup.value
+            var category_name = optgroup.label
+            alert(sValue);
+            sendQuestion(x, y, z, ü, l, boolean, boolean1, boolean2, boolean3, category_name, category_id, subcategory_id, sValue,questionID);
+            fragenArray=null;
+        }
+
+        document.getElementById("FragenForm").reset();
+
+    })
+
+
+    function sendQuestion(x, y, z, ü, l, boolean, boolean1, boolean2, boolean3, category_name, category_id, subcategory_id, subcategory_name,questionID) {
+
+        $.ajax({
+            type: 'PATCH',
+            crossDomain: true,
+            url: 'https://projektseminarlfrb.herokuapp.com/questions' + '/' + questionID,
+            data: JSON.stringify({
+                "question": x,
+                "category_id": category_id,
+                "category_name": category_name,
+                "subcategory_id": subcategory_id,
+                "subcategory_name": subcategory_name,
+                "answer": y,
+                "boolean": boolean,
+                "answer1": z,
+                "boolean1": boolean1,
+                "answer2": ü,
+                "boolean2": boolean2,
+                "answer3": l,
+                "boolean3": boolean3
+            }),
+            dataType: 'json',
+            contentType: 'application/json',
+            success: function() {
+                alert('Die Frage wurde erfolgreich verändert');
+            },
+            error: function(result) {
+                console.log(result);
+                alert("Es gab einen Fehler beim Hochladen der Änderungen!");
+            }
+
+        })
+    }
+
+    function formValidation(x, y, z, ü, l) {
+        console.log("Test der Validation")
+        if (x == "") {
+            window.alert("Bitte geben sie eine Frage ein.");
+            return false;
+        } else if (y == "") {
+            window.alert("Bitte geben sie die erste Antwortmöglichkeit ein.");
+            return false;
+        } else if (z == "") {
+
+            window.alert("Bitte geben sie die zweite Antwortmöglichkeit ein.");
+            return false;
+        } else if (ü == "") {
+
+            window.alert("Bitte geben sie die dritte Antwortmöglichkeit ein.");
+            return false;
+        } else if (l = "") {
+            window.alert("Bitte geben sie die vierte Antwortmöglichkeit ein.");
+            return false;
+        } else if (!validateRaioButtons(document.getElementsByName('Wahrheit1'))) {
+            window.alert("Bitte geben Sie an ob die Erste Frage wahr oder Falsch sein soll!");
+            return false;
+        } else if (!validateRaioButtons(document.getElementsByName('Wahrheit2'))) {
+            window.alert("Bitte geben Sie an ob die zweite Frage wahr oder Falsch sein soll!");
+            return false;
+        } else if (!validateRaioButtons(document.getElementsByName('Wahrheit3'))) {
+            window.alert("Bitte geben Sie an ob die dritte Frage wahr oder Falsch sein soll!");
+            return false;
+        } else if (!validateRaioButtons(document.getElementsByName('Wahrheit4'))) {
+            window.alert("Bitte geben Sie an ob die vierte Frage wahr oder Falsch sein soll!");
+            return false;
+        } else {
+            return true;
+        }
+
+    }
+
+    function validateRaioButtons(radios) {
+        for (var i = 0; i < radios.length; i++) {
+            if (radios[i].checked) {
+                // alert("Selected Value = " + radios[i].value);
+                return true; // checked
+                break;
+            }
+        }
+        return false;
+    }
+
+    function turnBackRadioButton(radios) {
+        for (var i = 0; i < radios.length; i++) {
+            if (radios[i].checked) {
+                return radios[i].value;
+            }
+        }
     }
   
 

@@ -83,7 +83,7 @@
             <br>
             <br/> Antwortmöglichkeit 4:
             <br>
-            <input type="text" name="Antwort44">
+            <input type="text" name="Antwort4">
             <input type="radio" id="wahr4" name="Wahrheit4" value="true">
             <label for="wahr4"> Wahr</label>
             <input type="radio" id="falsch4" name="Wahrheit4" value="false">
@@ -163,7 +163,7 @@
         var y = document.forms["FragenForm"]["Antwort1"].value;
         var z = document.forms["FragenForm"]["Antwort2"].value;
         var ü = document.forms["FragenForm"]["Antwort3"].value;
-        var l = document.forms["FragenForm"]["Antwort44"].value;
+        var l = document.forms["FragenForm"]["Antwort4"].value;
 
         if (formValidation(x, y, z, ü, l)) {
 
@@ -182,6 +182,7 @@
             var category_id = optgroup.value
             var category_name = optgroup.label
             alert(sValue);
+            alert(subcategory_id)
             sendQuestion(x, y, z, ü, l, boolean, boolean1, boolean2, boolean3, category_name, category_id, subcategory_id, sValue);
         }
 

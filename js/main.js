@@ -44,8 +44,9 @@ function onOnline() {
 
 var select = document.getElementById("selectCategorys");
 const myForm = document.getElementById("UnterkategorieForm")
+loadData();
 
-        function loadData(){
+    function loadData(){
             console.log("loadData")
         $.ajax({
         type: 'GET',
@@ -80,12 +81,17 @@ const myForm = document.getElementById("UnterkategorieForm")
         })
         }
 
+
+        
     function fillInDataInDropdown(json) {
         for (var i = 0; i < json.length; i++) {
             
             var el = document.createElement("option");
             el.value = json[i]._id;
             el.label = json[i].category_name;
+            var length = json[i].sub_categories.length
+            length--
+            el.data = json[i].sub_categories[length].subcategory_id
             // el.id = json.categories[i].category_name;
             select.appendChild(el)
         }
@@ -93,19 +99,38 @@ const myForm = document.getElementById("UnterkategorieForm")
 
     myForm.addEventListener("submit", (e) => {
         e.preventDefault();
-        sendSubCategory();
+        var selectBox = document.getElementById("selectCategorys");
+        var op = selectBox.options[selectBox.selectedIndex];
+        categoryID= op.value
+        var subID = op.data;
+        //If Sub id == 0, Category ID + 0.01
+        subID + 1;
+        subcategory_name = document.forms["UnterkategorieForm"]["Unterkategorie"].value;
+        if(subcategory_name ==""){
+            alert("Bitte geben sie Eine Unterkategorie ein")
+            return false;
+        }
+        else{
+            alert(op.value)
+            alert(op.data)
+            alert(subcategory_name)
+    
+    
+           sendSubCategory(categoryID,subID,subcategory_name);
+        }
+        
     })
 
 
-    function sendSubCategory() {
-        var string = "5de29a127ee2cb628c185e0d"
+    function sendSubCategory(categoryID,subID,subcategory_name) {
+        var string = categoryID
         $.ajax({
             type: 'PATCH',
             crossDomain: true,
             url: 'https://projektseminarlfrb.herokuapp.com/categorys' + '/' + string,
             data: JSON.stringify({
-                "subcategory_id":"1.15",
-                "subcategory_name":"Oberländer Funktionen"
+                "subcategory_id":subID,
+                "subcategory_name":subcategory_name
             }),
             dataType: 'json',
             contentType: 'application/json',
@@ -123,4 +148,3 @@ const myForm = document.getElementById("UnterkategorieForm")
 
    
 
-  loadData();
