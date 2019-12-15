@@ -7,8 +7,6 @@ var select = document.getElementById("selectCategorys");
  type: 'GET',
  url: 'https://projektseminarlfrb.herokuapp.com/categorys',
  data: { 
-    "category_name": 'IT-Business',
-    "subcategory_name": 'Lock-in'
    },
  dataType: 'json',
  success: function (data) {
@@ -53,12 +51,9 @@ var select = document.getElementById("selectCategorys");
         }
     }
 
-
-
-
-
     const questionsbutton = document.getElementById("loadQuestions");
-    let fragenData;
+    let fragenArray
+    let fragenData
     const fragenForm = document.getElementById("FragenForm");
 
  
@@ -69,58 +64,89 @@ var select = document.getElementById("selectCategorys");
         var optgroup = op.parentNode;
         var cValue = optgroup.label
         console.log(sValue)
-        fragenData = new Promise((resolve,reject)=>{
+         fragenData = new Promise((resolve,reject)=>{
             loadQuestions(cValue,sValue).then(data=>{
                 console.log("Promise")
-               // console.log(data);
-                resolve(data);
-                
+                resolve(data);               
         }).catch((data)=>
         reject(data)
         )
-        /*
-        loadQuestions(cValue,sValue).then(data=>{
-            console.log("Promise")
-            console.log(data);
-            fragenData = data;
-            
-        })
-        */
-  
-            /*
-        //swapQuestions(fragenData)
-       // alert(document.forms["FragenForm"]["FragenText"].value);
-       console.log("Daten sollteb jetzt kommmen")
-       console.log(fragenData)
-       console.log("JSON Sollte kommen");
-       var string= JSON.stringify(fragenData);
-       var json = JSON.parse(string)
-       console.log(json);
-      // swapQuestions();
-       // changeHTML();   
-       */
     })
     fragenData.then((data)=>{
-        console.log("FragenDataThen")
-        console.log(data)
+        console.log("JSON Sollte kommen");
+        var string= JSON.stringify(data);
+        var json = JSON.parse(string)
+        fragenArray = json
+        console.log(json[0]);
+        fillInQuestionnHTML(json);
     })
-   
 }
-
-
-    
-    function changeHTML(){
-        console.log("Change HTML")
-        document.forms["FragenForm"]["Antwort1"].value ="VISUCALSTUDIOCODE";
-        document.forms["FragenForm"]["Wahrheit1"].value ="false";
+    function fillInQuestionnHTML(json){
+        console.log("FillInQuestionHTML")
+        document.forms["FragenForm"]["Frage"].value =json[0].question;
+        document.forms["FragenForm"]["Antwort1"].value =json[0].answers[0].aText;
+        document.forms["FragenForm"]["Antwort2"].value =json[0].answers[1].aText;
+        document.forms["FragenForm"]["Antwort3"].value =json[0].answers[2].aText;
+        document.forms["FragenForm"]["Antwort4"].value =json[0].answers[3].aText;
+       
+        document.forms["FragenForm"]["Wahrheit1"].value =json[0].answers[0].trueOrFalse;
+        document.forms["FragenForm"]["Wahrheit2"].value =json[0].answers[1].trueOrFalse;
+        document.forms["FragenForm"]["Wahrheit3"].value =json[0].answers[2].trueOrFalse;
+        document.forms["FragenForm"]["Wahrheit4"].value =json[0].answers[3].trueOrFalse;
+        document.forms["FragenForm"]["id"].value =json[0]._id;
+       // document.forms["FragenForm"]["index"].value =json
+       //IDEA: SAVE ALL Questions TO Form, SWAP over index
+       document.forms["FragenForm"]["index"].value =0
     }
 
-    function swapQuestions(){
+    function swapQuestions(json,index){
+            
             console.log("swapQuestions")
-            console.log("")
-            var string= JSON.stringify(fragenData);
-            var json = JSON.parse(string)
-            console.log(json);
+            document.forms["FragenForm"]["Frage"].value =json.question;
+            document.forms["FragenForm"]["Antwort1"].value =json.answers[0].aText;
+            document.forms["FragenForm"]["Antwort2"].value =json.answers[1].aText;
+            document.forms["FragenForm"]["Antwort3"].value =json.answers[2].aText;
+            document.forms["FragenForm"]["Antwort4"].value =json.answers[3].aText;
+           
+            document.forms["FragenForm"]["Wahrheit1"].value =json.answers[0].trueOrFalse;
+            document.forms["FragenForm"]["Wahrheit2"].value =json.answers[1].trueOrFalse;
+            document.forms["FragenForm"]["Wahrheit3"].value =json.answers[2].trueOrFalse;
+            document.forms["FragenForm"]["Wahrheit4"].value =json.answers[3].trueOrFalse;
+            document.forms["FragenForm"]["index"].value = index;
+    }
+
+      
+    function moveLeft(){
+        console.log("MoveLeft")
+        var index =  document.forms["FragenForm"]["index"].value
+          console.log("Momentaner eingelesner Index: "+ index)
+          console.log("Momentaner Fragen Array länge: " + fragenArray.length)
+          if(index ==0){
+                console.log("Weiter nach Links geht nicht")
+          }
+          else{
+              index--;
+              swapQuestions(fragenArray[index],index);
+          }
+    }
+
+    function moveRight(){
+        console.log("MoveRight")
+        var index =  document.forms["FragenForm"]["index"].value
+        var laenge= fragenArray.length
+        laenge--
+        console.log("Momentaner eingelesner Index: "+ index)
+        console.log("Momentaner Fragen Array länge: " + fragenArray.length)
+        if(index < laenge){
+            //if(index < fragenArray.length--) das geht nicht...
+            index++;
+            swapQuestions(fragenArray[index],index)
+        }
+        else{
+            console.log("Ende der Fragen erreicht.")
+        }
+       
+
     }
 
 
@@ -159,7 +185,7 @@ var select = document.getElementById("selectCategorys");
       })
     })
     }
-    
+  
 
 
 

@@ -70,7 +70,6 @@
             <div>
                 <form id="FragenForm" name="FragenForm" class="form">
                     Neue Frage in dieser Kategorie eingeben:
-                    
                     <br>
                     <input id="Frage" type="text" name="FragenText">
                     <br>
@@ -100,19 +99,34 @@
                     <br>
                     <br/> Antwortmöglichkeit 4:
                     <br>
-                    <input type="text" name="Antwort44">
+                    <input type="text" name="Antwort4">
                     <input type="radio" id="wahr4" name="Wahrheit4" value="true">
                     <label for="wahr4"> Wahr</label>
                     <input type="radio" id="falsch4" name="Wahrheit4" value="false">
                     <label for="falsch4"> Falsch</label>
                     <br>
-                    <br />
+                    <br>
+                    <input type="hidden" id="id" name="id">
+                    <input type="hidden" id="index" name="index">
         
                     <input type="submit" value="Hinzufügen" onsubmit="consoleLog();" />
                     <br />
         
                 </form>
             </div>
+            <br>
+            <br>
+            <br>
+
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="moveLeft()">
+                Nach Links
+              </button>
+
+              <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="moveRight()">
+                Nach Rechts
+              </button>
+              
+              
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>        
