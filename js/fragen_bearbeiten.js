@@ -53,7 +53,13 @@ var select = document.getElementById("selectCategorys");
         }
     }
 
+
+
+
+
     const questionsbutton = document.getElementById("loadQuestions");
+    let fragenData;
+    const fragenForm = document.getElementById("FragenForm");
 
  
     function loadParameters(){
@@ -63,12 +69,65 @@ var select = document.getElementById("selectCategorys");
         var optgroup = op.parentNode;
         var cValue = optgroup.label
         console.log(sValue)
-        console.log(cValue)
-        loadQuestions(cValue,sValue);
+        fragenData = new Promise((resolve,reject)=>{
+            loadQuestions(cValue,sValue).then(data=>{
+                console.log("Promise")
+               // console.log(data);
+                resolve(data);
+                
+        }).catch((data)=>
+        reject(data)
+        )
+        /*
+        loadQuestions(cValue,sValue).then(data=>{
+            console.log("Promise")
+            console.log(data);
+            fragenData = data;
+            
+        })
+        */
+  
+            /*
+        //swapQuestions(fragenData)
+       // alert(document.forms["FragenForm"]["FragenText"].value);
+       console.log("Daten sollteb jetzt kommmen")
+       console.log(fragenData)
+       console.log("JSON Sollte kommen");
+       var string= JSON.stringify(fragenData);
+       var json = JSON.parse(string)
+       console.log(json);
+      // swapQuestions();
+       // changeHTML();   
+       */
+    })
+    fragenData.then((data)=>{
+        console.log("FragenDataThen")
+        console.log(data)
+    })
+   
+}
+
+
+    
+    function changeHTML(){
+        console.log("Change HTML")
+        document.forms["FragenForm"]["Antwort1"].value ="VISUCALSTUDIOCODE";
+        document.forms["FragenForm"]["Wahrheit1"].value ="false";
     }
 
+    function swapQuestions(){
+            console.log("swapQuestions")
+            console.log("")
+            var string= JSON.stringify(fragenData);
+            var json = JSON.parse(string)
+            console.log(json);
+    }
+
+
+
+
     function loadQuestions(cValue,sValue){
-        
+    return new Promise((resolve,reject)=>{
 	$.ajax({
         type: 'GET',
         url: 'https://projektseminarlfrb.herokuapp.com/questions',
@@ -79,21 +138,31 @@ var select = document.getElementById("selectCategorys");
         dataType: 'json',
         success: function (data) {
                   //let questions = JSON.stringify(data); 
-                  console.log(data); 
+                    //  console.log(data); 
                   if(data == undefined || data == null || data.length == 0) {
                   alert('Zu dieser Kategorie gibt es keine Fragen!'); 
+                  reject(data)
                      // window.location.href = './test_lernen.html'; 
                   } else {
-                      console.log(data);
+                     // console.log("Daten Länge")
+                    // console.log(data.length);
+                    resolve(data)
+                      
                   }
           },
           error: function (result){ 
                   console.log(result);
+                  reject(result)
                   alert("Es gab einen Fehler beim Laden der Daten!"); 
+
           }
       })
+    })
     }
     
+
+
+
 
 
 function generateCategorysArray(json){

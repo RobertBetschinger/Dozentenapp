@@ -57,9 +57,61 @@
             <select id="selectCategorys" name="selectCategorys" size="1"  class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"> </select>
             
             
+
             <button id ="loadQuestions" onclick="loadParameters()" class="self-center mt-4 flex items-center px-3 py-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                 Fragen Laden
             </button>
+            </div>
+
+
+
+            <br>
+            <br>
+            <div>
+                <form id="FragenForm" name="FragenForm" class="form">
+                    Neue Frage in dieser Kategorie eingeben:
+                    
+                    <br>
+                    <input id="Frage" type="text" name="FragenText">
+                    <br>
+                    <br> Antwortmöglichkeit 1:
+                    <br>
+                    <input type="text" name="Antwort1">
+                    <input type="radio" id="wahr1" name="Wahrheit1" value="true">
+                    <label for="wahr1"> Wahr</label>
+                    <input type="radio" id="falsch1" name="Wahrheit1" value="false">
+                    <label for="falsch1"> Falsch</label>
+                    <br>
+                    <br /> Antwortmöglichkeit 2:
+                    <br>
+                    <input type="text" name="Antwort2">
+                    <input type="radio" id="wahr2" name="Wahrheit2" value="true">
+                    <label for="wahr2"> Wahr</label>
+                    <input type="radio" id="falsch2" name="Wahrheit2" value="false">
+                    <label for="falsch2"> Falsch</label>
+                    <br>
+                    <br /> Antwortmöglichkeit 3:
+                    <br>
+                    <input type="text" name="Antwort3">
+                    <input type="radio" id="wahr3" name="Wahrheit3" value="true">
+                    <label for="wahr3"> Wahr</label>
+                    <input type="radio" id="falsch3" name="Wahrheit3" value="false">
+                    <label for="falsch3"> Falsch</label>
+                    <br>
+                    <br/> Antwortmöglichkeit 4:
+                    <br>
+                    <input type="text" name="Antwort44">
+                    <input type="radio" id="wahr4" name="Wahrheit4" value="true">
+                    <label for="wahr4"> Wahr</label>
+                    <input type="radio" id="falsch4" name="Wahrheit4" value="false">
+                    <label for="falsch4"> Falsch</label>
+                    <br>
+                    <br />
+        
+                    <input type="submit" value="Hinzufügen" onsubmit="consoleLog();" />
+                    <br />
+        
+                </form>
             </div>
 
 

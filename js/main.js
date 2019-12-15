@@ -93,18 +93,19 @@ const myForm = document.getElementById("UnterkategorieForm")
 
     myForm.addEventListener("submit", (e) => {
         e.preventDefault();
-        sendQuestion();
+        sendSubCategory();
     })
 
 
-    function sendQuestion() {
+    function sendSubCategory() {
         var string = "5de29a127ee2cb628c185e0d"
         $.ajax({
             type: 'PATCH',
+            crossDomain: true,
             url: 'https://projektseminarlfrb.herokuapp.com/categorys' + '/' + string,
             data: JSON.stringify({
-                "subcategory_id":"1.03",
-                "subcategory_name":"Mathematik Funktionen"
+                "subcategory_id":"1.15",
+                "subcategory_name":"Oberländer Funktionen"
             }),
             dataType: 'json',
             contentType: 'application/json',
