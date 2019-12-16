@@ -39,11 +39,13 @@ var select = document.getElementById("selectCategorys");
             el.value = json[i].category_id;
 
             for (var j = 0; j < json[i].sub_categories.length; j++) {
+                if(json[i].sub_categories[j].subcategory_id!= undefined){
                 var ellsub = document.createElement("option");
                 ellsub.label = json[i].sub_categories[j].subcategory_name;
                 ellsub.value = json[i].sub_categories[j].subcategory_id;
                 ellsub.text=json[i].sub_categories[j].subcategory_name;
                 el.appendChild(ellsub);
+                }
             }
             select.appendChild(el)
         }

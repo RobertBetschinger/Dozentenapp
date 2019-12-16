@@ -44,6 +44,8 @@ function onOnline() {
 
 var select = document.getElementById("selectCategorys");
 const myForm = document.getElementById("UnterkategorieForm")
+const überkategoireForm= document.getElementById("ÜberkategorieForm")    
+
 loadData();
 
     function loadData(){
@@ -89,9 +91,12 @@ loadData();
             var el = document.createElement("option");
             el.value = json[i]._id;
             el.label = json[i].category_name;
+            el.lang = json[i].category_id
             var length = json[i].sub_categories.length
             length--
+           // alert(json[i].category_name + "Sub Länge"+ length)
             el.data = json[i].sub_categories[length].subcategory_id
+            
             // el.id = json.categories[i].category_name;
             select.appendChild(el)
         }
@@ -102,21 +107,40 @@ loadData();
         var selectBox = document.getElementById("selectCategorys");
         var op = selectBox.options[selectBox.selectedIndex];
         categoryID= op.value
-        var subID = op.data;
-        //If Sub id == 0, Category ID + 0.01
-        subID + 1;
+        
+        
+            var subID =parseFloat(op.data)
+            subID= Math.round(subID * 100) / 100
+        
+      
+        var catID = parseFloat(op.lang)
+        catID = Math.round(catID * 100) / 100
+        console.log("Check if subcategory Undefined")
+        console.log("subcategory ID: "+ subID)
+        if(subID == undefined){
+            console.log("subid = undefined")
+            subID= catID + 0.01;
+            subID= Math.round(subID * 100) / 100
+        }
+        else if(isNaN(subID)){
+            console.log("NAN")
+            subID = catID + 0.01;
+            subID= Math.round(subID * 100) / 100
+        }
+        else{
+            console.log("Subs vorhanden")
+            subID = subID + 0.01;
+            subID= Math.round(subID * 100) / 100
+        }
+        console.log("subcategory ID: "+ subID)
         subcategory_name = document.forms["UnterkategorieForm"]["Unterkategorie"].value;
         if(subcategory_name ==""){
             alert("Bitte geben sie Eine Unterkategorie ein")
             return false;
         }
         else{
-            alert(op.value)
-            alert(op.data)
-            alert(subcategory_name)
-    
-    
-           sendSubCategory(categoryID,subID,subcategory_name);
+         
+          sendSubCategory(categoryID,subID,subcategory_name);
         }
         
     })
@@ -144,7 +168,49 @@ loadData();
 
         })
     }
-    
+
+
+    überkategoireForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        var theSelect = document.getElementById('selectCategorys');
+        var lastValue = theSelect.options[theSelect.options.length - 1].lang;
+        lastValue++
+
+        categoryName = document.forms["ÜberkategorieForm"]["Überkategorie"].value;
+        if(categoryName ==""){
+            alert("Bitte geben sie Eine Überkategorie ein")
+            return false;
+        }
+        else{
+            alert(lastValue)
+            alert(categoryName)
+          sendCategory(lastValue,categoryName)
+        }
+        
+    })
+
+    function sendCategory(categoryid,categoryName){
+        $.ajax({
+            type: 'POST',
+            crossDomain: true,
+            url: 'https://projektseminarlfrb.herokuapp.com/categorys',
+            data: JSON.stringify({
+                "category_id":categoryid,
+                "category_name":categoryName
+            }),
+            dataType: 'json',
+            contentType: 'application/json',
+            success: function() {
+                alert('Die neue Kategorie wurde erfolgreich hinzugefügt');
+            },
+            error: function(result) {
+                console.log(result);
+                alert("Es gab einen Fehler beim Hochladen der neuen Überkategorie");
+            }
+
+        })
+    }
 
    
 
