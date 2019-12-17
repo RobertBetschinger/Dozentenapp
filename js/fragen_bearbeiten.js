@@ -183,42 +183,68 @@ var select = document.getElementById("selectCategorys");
     }
 
     const myForm = document.getElementById("FragenForm");
-    
-    myForm.addEventListener("submit", (e) => {
-        e.preventDefault();
+
+    document.querySelector('#update').addEventListener("click", update)
+
+   function update(){
         
+    var x = document.forms["FragenForm"]["FragenText"].value;
+    var y = document.forms["FragenForm"]["Antwort1"].value;
+    var z = document.forms["FragenForm"]["Antwort2"].value;
+    var ü = document.forms["FragenForm"]["Antwort3"].value;
+    var l = document.forms["FragenForm"]["Antwort4"].value;
+    var questionID = document.forms["FragenForm"]["id"].value;
 
-        var x = document.forms["FragenForm"]["FragenText"].value;
-        var y = document.forms["FragenForm"]["Antwort1"].value;
-        var z = document.forms["FragenForm"]["Antwort2"].value;
-        var ü = document.forms["FragenForm"]["Antwort3"].value;
-        var l = document.forms["FragenForm"]["Antwort4"].value;
-        var questionID = document.forms["FragenForm"]["id"].value;
+    if (formValidation(x, y, z, ü, l)) {
 
-        if (formValidation(x, y, z, ü, l)) {
+        boolean = turnBackRadioButton(document.getElementsByName('Wahrheit1'));
+        boolean1 = turnBackRadioButton(document.getElementsByName('Wahrheit2'));
+        boolean2 = turnBackRadioButton(document.getElementsByName('Wahrheit3'));
+        boolean3 = turnBackRadioButton(document.getElementsByName('Wahrheit4'));
 
-            boolean = turnBackRadioButton(document.getElementsByName('Wahrheit1'));
-            boolean1 = turnBackRadioButton(document.getElementsByName('Wahrheit2'));
-            boolean2 = turnBackRadioButton(document.getElementsByName('Wahrheit3'));
-            boolean3 = turnBackRadioButton(document.getElementsByName('Wahrheit4'));
+        var subcategory_id = document.getElementById("selectCategorys").value;
+         sValue = $("option:selected", select).text()
+        console.log(sValue)
+        var selectBox = document.getElementById("selectCategorys");
+        var op = selectBox.options[selectBox.selectedIndex];
+        var optgroup = op.parentNode;
 
-            var subcategory_id = document.getElementById("selectCategorys").value;
-             sValue = $("option:selected", select).text()
-            console.log(sValue)
-            var selectBox = document.getElementById("selectCategorys");
-            var op = selectBox.options[selectBox.selectedIndex];
-            var optgroup = op.parentNode;
+        var category_id = optgroup.value
+        var category_name = optgroup.label
+        
+        sendQuestion(x, y, z, ü, l, boolean, boolean1, boolean2, boolean3, category_name, category_id, subcategory_id, sValue,questionID);
+        fragenArray=null;
+    }
+    document.getElementById("FragenForm").reset();
+   }
 
-            var category_id = optgroup.value
-            var category_name = optgroup.label
-            alert(sValue);
-            sendQuestion(x, y, z, ü, l, boolean, boolean1, boolean2, boolean3, category_name, category_id, subcategory_id, sValue,questionID);
-            fragenArray=null;
+   function deletion(){
+       console.log("deletion")
+    var questionID= document.forms["FragenForm"]["id"].value;
+    
+    deleteQuestion(questionID);
+    document.getElementById("FragenForm").reset();
+   }
+
+   function deleteQuestion(questionID){
+    $.ajax({
+        type: 'Delete',
+        crossDomain: true,
+        url: 'https://projektseminarlfrb.herokuapp.com/questions' + '/' + questionID,
+    
+        success: function() {
+            alert('Die Frage wurde erfolgreich gelöscht');
+        },
+        error: function(result) {
+            console.log(result);
+            alert("Es gab einen Fehler beim Löschen der Frage!");
         }
 
-        document.getElementById("FragenForm").reset();
-
     })
+   }
+
+  
+    
 
 
     function sendQuestion(x, y, z, ü, l, boolean, boolean1, boolean2, boolean3, category_name, category_id, subcategory_id, subcategory_name,questionID) {

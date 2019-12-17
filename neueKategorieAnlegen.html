@@ -5,56 +5,148 @@
     <meta http-equiv='X-UA-Compatible' content='ie=edge'>
     <title>Neue Kategorie anlegen</title>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <link rel="stylesheet" href="css/SplitSided.css">
+    <link rel="stylesheet" href="css/tailwindStyle.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-    
-    
+    <script type="text/javascript" charset="utf-8">
+        document.addEventListener("deviceready", onDeviceReady, true);
+
+        function onLoad() {
+            document.addEventListener("deviceready", onDeviceReady, true);
+        }
+
+        function onDeviceReady() {
+            // navigator.notification.alert("PhoneGap is working");
+            document.addEventListener("offline", onOffline, false);
+            document.addEventListener("online", onOnline, false);
+        }
+
+        function callMainMenu() {
+            window.location = "index.html";
+        }
+
+        function onOffline() {
+            alert("Keine Internetverbindung! App nur eingeschränkt verwendungsfähig.");
+        }
+
+        function onOnline() {
+            alert("Internetverbindung wieder vorhanden.");
+        }
+        function callDozentenappPage(){
+          window.location="HomeScreen.html"
+        }
+        function callExistingQuestionsPage()
+             {
+                window.location = "fragenBearbeiten.html";
+             }
+			 
+			 function callNewQuestionsPage()
+             {
+                window.location = "NeueFrageAnlegen.html";
+             }
+
+			 function callNewCategoryPage(){
+				 window.location ="neueKategorieAnlegen.html";
+			 }
+			 
+			 function callStudentPerformancePage()
+             {
+                window.location = "student_performance_page.html";
+             }
+			 
+			 function callUsageOverviewPage()
+			 {
+				window.location = "usage_overview_page.html";
+			 }
+    </script>
+    <style>
+        #menu-toggle:checked + #menu {
+          display: block;
+        }
+        .gradient {
+        background: linear-gradient(90deg, #939492 0%, #6c7597 100%);
+      }
+    </style>
 </head>
 <body>
-        <div id="nav_bar" >
-                <button id="nav_back_button" type="button" onclick="callMainMenu()"><img id="arrow_back" src="images/arrow_left_black.svg" alt="Back"></button>
-            </div>
-
-        <div class="container">
-                <div class="split left">
-                  <h1>Neue Unterkategorie anlegen</h1>
-                  <a class="button">
-                  <p>Wählen Sie in welche Überkategorie sie ergänzen wollen! </p>
-
-                <form id="UnterkategorieForm" name="UnterkategorieForm"">
-                  <select id="selectCategorys" name="selectCategorys" size="1">
-                    </select>
-                    <input type="text" name="Unterkategorie" placeholder="Unterkategorie">
-                    <input type="submit"  value="Hinzufügen" class="submit_button"/>
-                    
-                </form> 
-               
-                  </a>
-                </div>
-
-                <div class="split right">
-                  <h1>Neue Überkategorie anlegen</h1>
-                  <a href="#" class="button">
-                    <p>Geben sie an wie die neue Überkategorie heißen soll!
-
-                        <form id="ÜberkategorieForm" name="ÜberkategorieForm"action="#"">
-                            <br>
-                                <input type="text" name="Überkategorie" placeholder="Überkategorie">
-                                <br>
-                                <br>
-                                
-                                <br>
-                                <input type="submit" name="submit" value="Hinzufügen" class="submit_button" />
-                            
-                        </form>
-                    </p>
-                     
-                   
-
-                  </a>
-                </div>
-              </div>
+    <header class="lg:px-16 px-6 bg-green-600 h-auto md:h-24 flex flex-wrap items-center lg:py-0 py-2">
+              
+        <div class="flex items-center flex-shrink-0 text-white mr-6">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="w-4 h-4 opacity-75">
+            <path d="M3.33 8L10 12l10-6-10-6L0 6h10v2H3.33zM0 8v8l2-2.22V9.2L0 8zm10 12l-5-3-2-1.2v-6l7 4.2 7-4.2v6L10 20z"/></svg>
+            <span class="font-semibold text-2xl tracking-tight m-2">Universität Regensburg</span>
+          </div>
     
+      <label for="menu-toggle" class="pointer-cursor lg:hidden block"><svg class="fill-current text-gray-900" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><title>menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path></svg></label>
+      <input class="hidden" type="checkbox" id="menu-toggle" />
+    
+      <div class="hidden lg:flex lg:items-center lg:w-auto w-full" id="menu">
+        <div class="text-sm lg:flex-grow ">
+            <a href="#responsive-header" class="block mt-4 w-1/8 pl-6 pr-6 lg:inline-block lg:mt-0 text-teal-100 hover:text-white mr-4 text-base">
+              <button id="existing_questions_button" class="button_main" type="button" onclick="callDozentenappPage()">Dozentenapp</button>
+            <a href="#responsive-header" class="block mt-4  w-1/8 pl-6  pr-6 lg:inline-block lg:mt-0 text-teal-100 hover:text-white mr-4 text-base">        		 
+                  <button id="new_question_button" class="button_main" type="button" onclick="callNewQuestionsPage()">Neue Frage anlegen</button> 
+            </a>
+            <a href="#responsive-header" class="block mt-4 w-1/8  pl-6  pr-6 lg:inline-block lg:mt-0 text-teal-100 hover:text-white text-base">
+              <button id="new_category_button" class="button_main" type="button" onclick="callNewCategoryPage()">Neue Kategorie anlegen</button> 
+            </a>
+            <a href="#responsive-header" class="block mt-4 w-1/8 pl-6  pr-6 lg:inline-block lg:mt-0 text-teal-100 hover:text-white text-base">
+              <button id="existing_questions_button" class="button_main" type="button" onclick="callExistingQuestionsPage()">Bestehende Fragen </button>
+            </a>
+            <a href="#responsive-header" class="block mt-4 w-1/8  pl-6  pr-6 lg:inline-block lg:mt-0 text-teal-100 hover:text-white text-base">
+             Leistungsübersicht
+            </a>
+            <a href="#responsive-header" class="block mt-4 w-1/8 pl-6  pr-6 lg:inline-block lg:mt-0 text-teal-100 hover:text-white text-base">
+              Nutzungsübersicht
+            </a>
+          </div>
+      
+      </div>
+    
+      </header>
+
+      <div class="flex-col container pt-4 mx-auto mt-2 rounded shadow-md gradient rounded px-8 pt-6 pb-4 mb-4">
+
+        <div class=" shadow-md rounded  px-8 pt-6 pb-8 mb-4">
+            <h1 class="font-semibold text-3xl">Neue Unterkategorie anlegen </h1>
+            <p>Wählen Sie in welche Überkategorie sie ergänzen wollen! </p>
+            <div class="w-1/2 mt-4 flex-col">
+                    <form id="UnterkategorieForm" name="UnterkategorieForm"">
+                    <select id="selectCategorys" name="selectCategorys" size="1"  class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"> </select>
+                    
+                    <label class="block mt-2  text-xl font-semibold mb-2" for="Unterkategorie">
+                         Unterkategorie:
+                    </label>
+                    <input type="text" name="Unterkategorie" placeholder="Unterkategorie" class="shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    
+                    
+                    <input type="submit"  value="Hinzufügen"  class="bg-blue-500 hover:bg-blue-700 text-white mt-4  w-1/2  md:pl-3 md:pr-3 py-2 px-1 font-bold rounded focus:outline-none focus:shadow-outline" />
+                    </form> 
+
+                    
+            </div>
+         
+            
+          </div>
+
+          <div class=" shadow-md rounded mt-12 px-8 pt-6 pb-8 mb-4">
+            <h1 class="font-semibold text-3xl">Neue Überkategorie anlegen</h1>
+            <div class="w-1/2 mt-2 flex-col">
+            <form id="ÜberkategorieForm" name="ÜberkategorieForm"action="#"">
+
+                <label class="block mt-2  text-xl font-semibold mb-2" for="Überkategorie">
+                    Überkategorie:
+               </label>
+                    <input type="text" name="Überkategorie" placeholder="Überkategorie"class="shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                  
+                    <input type="submit" name="submit" value="Hinzufügen" class="bg-blue-500 hover:bg-blue-700 text-white mt-4  w-1/2 md:pl-3 md:pr-3 py-2 px-1 font-bold rounded focus:outline-none focus:shadow-outline" />
+                
+            </form>
+        </div>
+          </div>
+
+      </div>
+
+       
     
 
               <script src ="js/main.js"></script>

@@ -1,3 +1,4 @@
+/*
 const left = document.querySelector(".left");
 const right = document.querySelector(".right");
 const container = document.querySelector(".container");
@@ -17,7 +18,7 @@ right.addEventListener("mouseenter", () => {
 right.addEventListener("mouseleave", () => {
   container.classList.remove("hover-right");
 });
-
+*/
 document.addEventListener("deviceready", onDeviceReady, true);
 
 function onLoad() {

@@ -1,57 +1,195 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <title> Fragen hinzufügen </title>
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Neue Frage Anlegen</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <link rel="stylesheet" href="css/tailwindStyle.css">
+    
+    <style>
+      .gradient {
+        background: linear-gradient(90deg, #939492 0%, #6c7597 100%);
+      }
+      #menu-toggle:checked + #menu {
+          display: block;
+        }
+    </style>
     <script type="text/javascript" charset="utf-8">
-        document.addEventListener("deviceready", onDeviceReady, true);
+      document.addEventListener("deviceready", onDeviceReady, true);
 
-        function onLoad() {
-            document.addEventListener("deviceready", onDeviceReady, true);
-        }
+      function onLoad() {
+          document.addEventListener("deviceready", onDeviceReady, true);
+      }
 
-        function onDeviceReady() {
-            // navigator.notification.alert("PhoneGap is working");
-            document.addEventListener("offline", onOffline, false);
-            document.addEventListener("online", onOnline, false);
-        }
+      function onDeviceReady() {
+          // navigator.notification.alert("PhoneGap is working");
+          document.addEventListener("offline", onOffline, false);
+          document.addEventListener("online", onOnline, false);
+      }
 
-        function callMainMenu() {
-            window.location = "index.html";
-        }
+      function callMainMenu() {
+          window.location = "index.html";
+      }
 
-        function onOffline() {
-            alert("Keine Internetverbindung! App nur eingeschränkt verwendungsfähig.");
-        }
+      function onOffline() {
+          alert("Keine Internetverbindung! App nur eingeschränkt verwendungsfähig.");
+      }
 
-        function onOnline() {
-            alert("Internetverbindung wieder vorhanden.");
-        }
-    </script>
+      function onOnline() {
+          alert("Internetverbindung wieder vorhanden.");
+      }
+      function callDozentenappPage(){
+        window.location="HomeScreen.html"
+      }
+      function callExistingQuestionsPage()
+           {
+              window.location = "fragenBearbeiten.html";
+           }
+     
+     function callNewQuestionsPage()
+           {
+              window.location = "NeueFrageAnlegen.html";
+           }
 
+     function callNewCategoryPage(){
+       window.location ="neueKategorieAnlegen.html";
+     }
+     
+     function callStudentPerformancePage()
+           {
+              window.location = "student_performance_page.html";
+           }
+     
+     function callUsageOverviewPage()
+     {
+      window.location = "usage_overview_page.html";
+     }
+  </script>
+
+  
+   
 </head>
-<style>
 
-</style>
+<body >
 
-<body>
 
-    <div id="nav_bar">
-        <button id="nav_back_button" type="button" onclick="callMainMenu()"><img id="arrow_back" src="images/arrow_left_black.svg" alt="Back"></button>
-    </div>
-    <h1> Neue Frage anlegen </h1>
+    <header class="lg:px-16 px-6 bg-green-600 h-auto md:h-24 flex flex-wrap items-center lg:py-0 py-2">
+              
+        <div class="flex items-center flex-shrink-0 text-white mr-6">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="w-4 h-4 opacity-75">
+            <path d="M3.33 8L10 12l10-6-10-6L0 6h10v2H3.33zM0 8v8l2-2.22V9.2L0 8zm10 12l-5-3-2-1.2v-6l7 4.2 7-4.2v6L10 20z"/></svg>
+            <span class="font-semibold text-2xl tracking-tight m-2">Universität Regensburg</span>
+          </div>
+    
+      <label for="menu-toggle" class="pointer-cursor lg:hidden block"><svg class="fill-current text-gray-900" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><title>menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path></svg></label>
+      <input class="hidden" type="checkbox" id="menu-toggle" />
+    
+      <div class="hidden lg:flex lg:items-center lg:w-auto w-full" id="menu">
+        <div class="text-sm lg:flex-grow ">
+            <a href="#responsive-header" class="block mt-4 w-1/8 pl-6 pr-6 lg:inline-block lg:mt-0 text-teal-100 hover:text-white mr-4 text-base">
+              <button id="existing_questions_button" class="button_main" type="button" onclick="callDozentenappPage()">Dozentenapp</button>
+            <a href="#responsive-header" class="block mt-4  w-1/8 pl-6  pr-6 lg:inline-block lg:mt-0 text-teal-100 hover:text-white mr-4 text-base">        		 
+                  <button id="new_question_button" class="button_main" type="button" onclick="callNewQuestionsPage()">Neue Frage anlegen</button> 
+            </a>
+            <a href="#responsive-header" class="block mt-4 w-1/8  pl-6  pr-6 lg:inline-block lg:mt-0 text-teal-100 hover:text-white text-base">
+              <button id="new_category_button" class="button_main" type="button" onclick="callNewCategoryPage()">Neue Kategorie anlegen</button> 
+            </a>
+            <a href="#responsive-header" class="block mt-4 w-1/8 pl-6  pr-6 lg:inline-block lg:mt-0 text-teal-100 hover:text-white text-base">
+              <button id="existing_questions_button" class="button_main" type="button" onclick="callExistingQuestionsPage()">Bestehende Fragen </button>
+            </a>
+            <a href="#responsive-header" class="block mt-4 w-1/8  pl-6  pr-6 lg:inline-block lg:mt-0 text-teal-100 hover:text-white text-base">
+             Leistungsübersicht
+            </a>
+            <a href="#responsive-header" class="block mt-4 w-1/8 pl-6  pr-6 lg:inline-block lg:mt-0 text-teal-100 hover:text-white text-base">
+              Nutzungsübersicht
+            </a>
+          </div>
+      
+      </div>
+    
+      </header>
 
+      <div class="flex-col container pt-4 mx-auto mt-2 rounded shadow-md bg-gray-300 rounded px-8 pt-6 pb-4 mb-4">
+    <h1 class="font-semibold text-3xl">Neue Frage anlegen </h1>
+    <div>
     <p>Hier können Sie neue Fragen anlegen.</p>
-    <p>Wählen Sie zunächste eine Kategorie aus.</p>
+    <p>Wählen Sie zunächste eine Kategorie bzw. eine Unterkategorie aus.</p>
+    </div>
+   
+<div class="w-1/2 mt-4">
+    <select id="selectCategorys" name="selectCategorys" size="1"  class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"> </select>
+</div>     
+    <div class="bg-gray-400 shadow-md rounded  mt-8 px-8 pt-6 pb-8 mb-4">
+        <form id="FragenForm" name="FragenForm" class="form ">
+            <label class="block mt-2 text-xl font-semibold mb-2" for="Frage">
+                Frage
+            </label>
+            <input id="Frage" type="text" name="FragenText" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            
+            <label class="block mt-2  text-xl font-semibold mb-2" for="Antwort1">
+                Antwortmöglichkeit 1
+            </label>
+            <input type="text" name="Antwort1"  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            <br>
 
-    <select id="selectCategorys" name="selectCategorys" size="1">
-    </select>
-    <br>
-    <br>
+            <input type="radio" class="form-radio text-green-400 h-6 w-6" id="wahr1" name="Wahrheit1" value="true" >
+            <label class="inline-flex items-center pl-2 mt-2 mr-2 h-12" for="wahr1"> Wahr</label>
 
+            <input type="radio"  class="form-radio text-red-400 h-6 w-6 "id="falsch1" name="Wahrheit1" value="false">
+            <label class="inline-flex items-center pl-2 mt-2 mr-2 h-12" for="falsch1"> Falsch</label>
+
+     
+
+
+            <label class="block mt-2 text-xl font-semibold mb-2" for="Antwort2">
+                Antwortmöglichkeit 2
+            </label>
+            <input type="text" name="Antwort2" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+
+            <input type="radio" class="form-radio text-green-400 h-6 w-6" id="wahr2" name="Wahrheit2" value="true" >
+            <label class="inline-flex items-center pl-2 mt-2 mr-2 h-12" for="wahr2"> Wahr</label>
+
+            <input type="radio"  class="form-radio text-red-400 h-6 w-6 "id="falsch2" name="Wahrheit2" value="false">
+            <label class="inline-flex items-center pl-2 mt-2 mr-2 h-12" for="falsch2"> Falsch</label>
+
+
+            <label class="block mt-2 text-xl font-semibold mb-2" for="Antwort3">
+                Antwortmöglichkeit 3
+            </label>
+            <input type="text" name="Antwort3" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+
+            <input type="radio" class="form-radio text-green-400 h-6 w-6" id="wahr3" name="Wahrheit3" value="true" >
+            <label class="inline-flex items-center pl-2 mt-2 mr-2 h-12" for="wahr3"> Wahr</label>
+
+            <input type="radio"  class="form-radio text-red-400 h-6 w-6 "id="falsch3" name="Wahrheit3" value="false">
+            <label class="inline-flex items-center pl-2 mt-2 mr-2 h-12" for="falsch3"> Falsch</label>
+
+            <label class="block mt-2 text-xl font-semibold mb-2" for="Antwort4">
+                Antwortmöglichkeit 4
+            </label>
+            <input type="text" name="Antwort4" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            
+            <input type="radio" class="form-radio text-green-400 h-6 w-6" id="wahr4" name="Wahrheit4" value="true" >
+            <label class="inline-flex items-center pl-2 mt-2 mr-2 h-12" for="wahr4"> Wahr</label>
+
+            <input type="radio"  class="form-radio text-red-400 h-6 w-6 "id="falsch4" name="Wahrheit4" value="false">
+            <label class="inline-flex items-center pl-2 mt-2 mr-2 h-12" for="falsch4"> Falsch</label>
+            
+            <input type="hidden" id="id" name="id">
+            <input type="hidden" id="index" name="index">
+            <div class="mt-4  flex items-center justify-between">
+            <input type="submit"  id="update"name="update_button" value="Frage Hochladen" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 md:px-4 px-3 rounded focus:outline-none focus:shadow-outline" type="button" />
+            <
+        </div>
+        </form>
+    </div>
+      </div>
+
+    <!--
     <div>
         <form id="FragenForm" name="FragenForm" class="form">
             Neue Frage in dieser Kategorie eingeben:
@@ -96,6 +234,9 @@
 
         </form>
     </div>
+
+-->
+    
 
 </body>
 

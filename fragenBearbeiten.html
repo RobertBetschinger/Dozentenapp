@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Fragen bearbeiten</title>
-    
-    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/tailwindStyle.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script type="text/javascript" charset="utf-8">
         document.addEventListener("deviceready", onDeviceReady, true);
@@ -32,48 +31,79 @@
         function onOnline() {
             alert("Internetverbindung wieder vorhanden.");
         }
+        function callDozentenappPage(){
+          window.location="HomeScreen.html"
+        }
+        function callExistingQuestionsPage()
+             {
+                window.location = "fragenBearbeiten.html";
+             }
+			 
+			 function callNewQuestionsPage()
+             {
+                window.location = "NeueFrageAnlegen.html";
+             }
+
+			 function callNewCategoryPage(){
+				 window.location ="neueKategorieAnlegen.html";
+			 }
+			 
+			 function callStudentPerformancePage()
+             {
+                window.location = "student_performance_page.html";
+             }
+			 
+			 function callUsageOverviewPage()
+			 {
+				window.location = "usage_overview_page.html";
+			 }
     </script>
+  
+      <style>
+        #menu-toggle:checked + #menu {
+          display: block;
+        }
+    </style>
 </head>
 <body>
 
-    <nav class="flex items-center justify-between flex-wrap  p-6 bg-green-600">
-        <div class="flex items-center flex-shrink-0 text-white mr-6">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="w-4 h-4 opacity-50"><path d="M3.33 8L10 12l10-6-10-6L0 6h10v2H3.33zM0 8v8l2-2.22V9.2L0 8zm10 12l-5-3-2-1.2v-6l7 4.2 7-4.2v6L10 20z"/></svg>
-          <span class="font-semibold text-2xl tracking-tight m-2">Universität Regensburg</span>
-        </div>
-        
-        <div class="block lg:hidden">
-          <button class="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white">
-            <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
-          </button>
-        </div>
+  <header class="lg:px-16 px-6 bg-green-600 h-auto md:h-24 flex flex-wrap items-center lg:py-0 py-2">
+              
+    <div class="flex items-center flex-shrink-0 text-white mr-6">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="w-4 h-4 opacity-75">
+        <path d="M3.33 8L10 12l10-6-10-6L0 6h10v2H3.33zM0 8v8l2-2.22V9.2L0 8zm10 12l-5-3-2-1.2v-6l7 4.2 7-4.2v6L10 20z"/></svg>
+        <span class="font-semibold text-2xl tracking-tight m-2">Universität Regensburg</span>
+      </div>
 
-        <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
-          <div class="text-sm lg:flex-grow ">
-            <a href="#responsive-header" class="block mt-4 w-1/8 pl-6 pr-6 lg:inline-block lg:mt-0 text-teal-100 hover:text-white mr-4 text-base">
-              Dokumentation
-            </a>
-            <a href="#responsive-header" class="block mt-4  w-1/8 pl-6  pr-6 lg:inline-block lg:mt-0 text-teal-100 hover:text-white mr-4 text-base">
-              Neue Fragen Anlegen
-            </a>
-            <a href="#responsive-header" class="block mt-4 w-1/8  pl-6  pr-6 lg:inline-block lg:mt-0 text-teal-100 hover:text-white text-base">
-              Neue Kategorie Anlegen
-            </a>
-            <a href="#responsive-header" class="block mt-4 w-1/8 pl-6  pr-6 lg:inline-block lg:mt-0 text-teal-100 hover:text-white text-base">
-              Fragen bearbeiten
-            </a>
-            <a href="#responsive-header" class="block mt-4 w-1/8  pl-6  pr-6 lg:inline-block lg:mt-0 text-teal-100 hover:text-white text-base">
-             Leistungsübersicht
-            </a>
-            <a href="#responsive-header" class="block mt-4 w-1/8 pl-6  pr-6 lg:inline-block lg:mt-0 text-teal-100 hover:text-white text-base">
-              Nutzungsübersicht
-            </a>
-          </div>
-          
-        </div>
-</nav>
+  <label for="menu-toggle" class="pointer-cursor lg:hidden block"><svg class="fill-current text-gray-900" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><title>menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path></svg></label>
+  <input class="hidden" type="checkbox" id="menu-toggle" />
+
+  <div class="hidden lg:flex lg:items-center lg:w-auto w-full" id="menu">
+    <div class="text-sm lg:flex-grow ">
+        <a href="#responsive-header" class="block mt-4 w-1/8 pl-6 pr-6 lg:inline-block lg:mt-0 text-teal-100 hover:text-white mr-4 text-base">
+          <button id="existing_questions_button" class="button_main" type="button" onclick="callDozentenappPage()">Dozentenapp</button>
+        <a href="#responsive-header" class="block mt-4  w-1/8 pl-6  pr-6 lg:inline-block lg:mt-0 text-teal-100 hover:text-white mr-4 text-base">        		 
+      		<button id="new_question_button" class="button_main" type="button" onclick="callNewQuestionsPage()">Neue Frage anlegen</button> 
+        </a>
+        <a href="#responsive-header" class="block mt-4 w-1/8  pl-6  pr-6 lg:inline-block lg:mt-0 text-teal-100 hover:text-white text-base">
+          <button id="new_category_button" class="button_main" type="button" onclick="callNewCategoryPage()">Neue Kategorie anlegen</button> 
+        </a>
+        <a href="#responsive-header" class="block mt-4 w-1/8 pl-6  pr-6 lg:inline-block lg:mt-0 text-teal-100 hover:text-white text-base">
+          <button id="existing_questions_button" class="button_main" type="button" onclick="callExistingQuestionsPage()">Bestehende Fragen </button>
+        </a>
+        <a href="#responsive-header" class="block mt-4 w-1/8  pl-6  pr-6 lg:inline-block lg:mt-0 text-teal-100 hover:text-white text-base">
+         Leistungsübersicht
+        </a>
+        <a href="#responsive-header" class="block mt-4 w-1/8 pl-6  pr-6 lg:inline-block lg:mt-0 text-teal-100 hover:text-white text-base">
+          Nutzungsübersicht
+        </a>
+      </div>
+  
+  </div>
+
+  </header>
         
-     <div class="flex-col container pt-4 mx-auto  rounded px-8 pt-6 pb-8 mb-4">
+     <div class="flex-col container pt-4 mx-auto mt-2 rounded shadow-md bg-gray-300 rounded px-8 pt-6 pb-4 mb-4">
 
             <h1 class="font-semibold text-3xl">Bestehende Fragen bearbeiten </h1>
             <div>
@@ -94,7 +124,7 @@
 
             <br>
             <br>
-            <div class="bg-gray-400 shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <div class="bg-gray-400 shadow-md rounded  px-8 pt-6 pb-8 mb-4">
                 <form id="FragenForm" name="FragenForm" class="form ">
                     <label class="block mt-2 text-xl font-semibold mb-2" for="Frage">
                         Neue Frage eingeben:
@@ -105,13 +135,15 @@
                         Antwortmöglichkeit 1
                     </label>
                     <input type="text" name="Antwort1"  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                    <br>
+                    
 
-                    <input type="radio" class="form-radio  h-4 w-4" id="wahr1" name="Wahrheit1" value="true" >
-                    <label class="inline-flex items-center mt-2 mr-2 h-6" for="wahr1"> Wahr</label>
+                    <input type="radio" class="form-radio text-green-400 h-6 w-6" id="wahr1" name="Wahrheit1" value="true" >
+                    <label class="inline-flex items-center pl-2 mt-2 mr-2 h-12" for="wahr1"> Wahr</label>
 
-                    <input type="radio"  class="form-radio h-4 w-4"id="falsch1" name="Wahrheit1" value="false">
-                    <label for="falsch1"> Falsch</label>
+                    <input type="radio"  class="form-radio text-red-400 h-6 w-6 "id="falsch1" name="Wahrheit1" value="false">
+                    <label class="inline-flex items-center pl-2 mt-2 mr-2 h-12" for="falsch1"> Falsch</label>
+
+             
 
 
                     <label class="block mt-2 text-xl font-semibold mb-2" for="Antwort2">
@@ -119,11 +151,11 @@
                     </label>
                     <input type="text" name="Antwort2" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
 
-                    <input type="radio"  class="form-radioh-4 w-4 "id="wahr2" name="Wahrheit2" value="true">
-                    <label class="inline-flex items-center mt-2 mr-2 h-6" for="wahr2"> Wahr</label>
+                    <input type="radio" class="form-radio text-green-400 h-6 w-6" id="wahr2" name="Wahrheit2" value="true" >
+                    <label class="inline-flex items-center pl-2 mt-2 mr-2 h-12" for="wahr2"> Wahr</label>
 
-                    <input type="radio" class="form-radio h-4 w-4" id="falsch2" name="Wahrheit2" value="false">
-                    <label class="inline-flex items-center mt-2 mr-2 h-6" for="falsch2"> Falsch</label>
+                    <input type="radio"  class="form-radio text-red-400 h-6 w-6 "id="falsch2" name="Wahrheit2" value="false">
+                    <label class="inline-flex items-center pl-2 mt-2 mr-2 h-12" for="falsch2"> Falsch</label>
 
 
                     <label class="block mt-2 text-xl font-semibold mb-2" for="Antwort3">
@@ -131,33 +163,39 @@
                     </label>
                     <input type="text" name="Antwort3" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
 
-                    <input type="radio" class="form-radio h-4 w-4 " id="wahr3" name="Wahrheit3" value="true">
-                    <label class="inline-flex items-center mt-2 mr-2 h-6" for="wahr3"> Wahr</label>
-                    <input type="radio" class="form-radio h-4 w-4 " id="falsch3" name="Wahrheit3" value="false">
-                    <label class="inline-flex items-center mt-2 mr-2 h-6" for="falsch3"> Falsch</label>
+                    <input type="radio" class="form-radio text-green-400 h-6 w-6" id="wahr3" name="Wahrheit3" value="true" >
+                    <label class="inline-flex items-center pl-2 mt-2 mr-2 h-12" for="wahr3"> Wahr</label>
+
+                    <input type="radio"  class="form-radio text-red-400 h-6 w-6 "id="falsch3" name="Wahrheit3" value="false">
+                    <label class="inline-flex items-center pl-2 mt-2 mr-2 h-12" for="falsch3"> Falsch</label>
 
                     <label class="block mt-2 text-xl font-semibold mb-2" for="Antwort4">
                         Antwortmöglichkeit 4
                     </label>
                     <input type="text" name="Antwort4" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                     
-                    <input type="radio" class="form-radio h-4 w-4" id="wahr4" name="Wahrheit4" value="true">
-                    <label class="inline-flex items-center mt-2 mr-2 h-6" for="wahr4"> Wahr</label>
-                    <input type="radio" class="form-radio h-4 w-4" id="falsch4" name="Wahrheit4" value="false">
-                    <label class="inline-flex items-center mt-2 mr-2 h-6" for="falsch4"> Falsch</label>
+                    <input type="radio" class="form-radio text-green-400 h-6 w-6" id="wahr4" name="Wahrheit4" value="true" >
+                    <label class="inline-flex items-center pl-2 mt-2 mr-2 h-12" for="wahr4"> Wahr</label>
+
+                    <input type="radio"  class="form-radio text-red-400 h-6 w-6 "id="falsch4" name="Wahrheit4" value="false">
+                    <label class="inline-flex items-center pl-2 mt-2 mr-2 h-12" for="falsch4"> Falsch</label>
                     
                     <input type="hidden" id="id" name="id">
                     <input type="hidden" id="index" name="index">
                     <div class="mt-4  flex items-center justify-between">
-                    <input type="submit" value="Frage Updaten" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" />
-                    </div>
+
+
+                    <input type="button" onclick="update()" id="update"name="update_button" value="Frage Updaten" class="bg-blue-500 hover:bg-blue-700 text-white  w-auto  md:pl-3 md:pr-3 py-2 px-1 font-bold rounded focus:outline-none focus:shadow-outline" type="button" />
+                    <input type="button" onclick="deletion()"  id="delte"name="delete_button" value="Frage Löschen"  class="bg-red-500 hover:bg-red-700 text-white w-auto md:pl-3 md:pr-3 py-2 px-2 font-bold rounded focus:outline-none focus:shadow-outline" type="button" />
+                   
+                  </div>
                 </form>
                 <div class="mt-6 md:mt-12 flex items-center justify-between">
-                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="moveLeft()">
+                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 pl-3 pr-3 w-auto rounded" onclick="moveLeft()">
                         Nach Links
                       </button>
         
-                      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="moveRight()">
+                      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 pl-3 pr-3 w-auto rounded" onclick="moveRight()">
                         Nach Rechts
                       </button>
                 </div>
