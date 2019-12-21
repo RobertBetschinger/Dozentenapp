@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='ie=edge'>
@@ -8,101 +7,98 @@
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <link rel="stylesheet" href="css/tailwindStyle.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-    <script src="js/navigation.js"></script>
+    <script src ="js/navigation.js"></script>
     <style>
         #menu-toggle:checked + #menu {
-            display: block;
+          display: block;
         }
-        
-        .gradient {
-            background: linear-gradient(90deg, #939492 0%, #6c7597 100%);
-        }
+         .gradient {
+        background: linear-gradient(90deg, #939492 0%, #6c7597 100%);
+      }
     </style>
 </head>
-
 <body>
     <header class="lg:px-16 px-6 bg-green-600 h-auto md:h-24 flex flex-wrap items-center lg:py-0 py-2">
-
+              
         <div class="flex items-center flex-shrink-0 text-white mr-6">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="w-4 h-4 opacity-75">
-                <path d="M3.33 8L10 12l10-6-10-6L0 6h10v2H3.33zM0 8v8l2-2.22V9.2L0 8zm10 12l-5-3-2-1.2v-6l7 4.2 7-4.2v6L10 20z" />
-            </svg>
+            <path d="M3.33 8L10 12l10-6-10-6L0 6h10v2H3.33zM0 8v8l2-2.22V9.2L0 8zm10 12l-5-3-2-1.2v-6l7 4.2 7-4.2v6L10 20z"/></svg>
             <span class="font-semibold text-2xl tracking-tight m-2">Universität Regensburg</span>
-        </div>
-
-        <label for="menu-toggle" class="pointer-cursor lg:hidden block">
-            <svg class="fill-current text-gray-900" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
-                <title>menu</title>
-                <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
-            </svg>
-        </label>
-        <input class="hidden" type="checkbox" id="menu-toggle" />
-
-        <div class="hidden lg:flex lg:items-center lg:w-auto w-full" id="menu">
-            <div class="text-sm lg:flex-grow ">
-                <a href="#responsive-header" class="block mt-4 w-1/8 pl-6 pr-6 lg:inline-block lg:mt-0 text-teal-100 hover:text-white mr-4 text-base">
-                    <button id="existing_questions_button" class="button_main" type="button" onclick="callDozentenappPage()">Dozentenapp</button>
-                    <a href="#responsive-header" class="block mt-4  w-1/8 pl-6  pr-6 lg:inline-block lg:mt-0 text-teal-100 hover:text-white mr-4 text-base">
-                        <button id="new_question_button" class="button_main" type="button" onclick="callNewQuestionsPage()">Neue Frage anlegen</button>
-                    </a>
-                    <a href="#responsive-header" class="block mt-4 w-1/8  pl-6  pr-6 lg:inline-block lg:mt-0 text-teal-100 hover:text-white text-base">
-                        <button id="new_category_button" class="button_main" type="button" onclick="callNewCategoryPage()">Neue Kategorie anlegen</button>
-                    </a>
-                    <a href="#responsive-header" class="block mt-4 w-1/8 pl-6  pr-6 lg:inline-block lg:mt-0 text-teal-100 hover:text-white text-base">
-                        <button id="existing_questions_button" class="button_main" type="button" onclick="callExistingQuestionsPage()">Bestehende Fragen </button>
-                    </a>
-                    <a href="#responsive-header" class="block mt-4 w-1/8  pl-6  pr-6 lg:inline-block lg:mt-0 text-teal-100 hover:text-white text-base">
+          </div>
+    
+      <label for="menu-toggle" class="pointer-cursor lg:hidden block"><svg class="fill-current text-gray-900" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><title>menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path></svg></label>
+      <input class="hidden" type="checkbox" id="menu-toggle" />
+    
+      <div class="hidden lg:flex lg:items-center lg:w-auto w-full" id="menu">
+        <div class="text-sm lg:flex-grow ">
+            <a href="#responsive-header" class="block mt-4 w-1/8 pl-6 pr-6 lg:inline-block lg:mt-0 text-teal-100 hover:text-white mr-4 text-base">
+              <button id="existing_questions_button" class="button_main" type="button" onclick="callDozentenappPage()">Dozentenapp</button>
+            <a href="#responsive-header" class="block mt-4  w-1/8 pl-6  pr-6 lg:inline-block lg:mt-0 text-teal-100 hover:text-white mr-4 text-base">        		 
+                  <button id="new_question_button" class="button_main" type="button" onclick="callNewQuestionsPage()">Neue Frage anlegen</button> 
+            </a>
+            <a href="#responsive-header" class="block mt-4 w-1/8  pl-6  pr-6 lg:inline-block lg:mt-0 text-teal-100 hover:text-white text-base">
+              <button id="new_category_button" class="button_main" type="button" onclick="callNewCategoryPage()">Neue Kategorie anlegen</button> 
+            </a>
+            <a href="#responsive-header" class="block mt-4 w-1/8 pl-6  pr-6 lg:inline-block lg:mt-0 text-teal-100 hover:text-white text-base">
+              <button id="existing_questions_button" class="button_main" type="button" onclick="callExistingQuestionsPage()">Bestehende Fragen </button>
+            </a>
+            <a href="#responsive-header" class="block mt-4 w-1/8  pl-6  pr-6 lg:inline-block lg:mt-0 text-teal-100 hover:text-white text-base">
              Leistungsübersicht
             </a>
-                    <a href="#responsive-header" class="block mt-4 w-1/8 pl-6  pr-6 lg:inline-block lg:mt-0 text-teal-100 hover:text-white text-base">
+            <a href="#responsive-header" class="block mt-4 w-1/8 pl-6  pr-6 lg:inline-block lg:mt-0 text-teal-100 hover:text-white text-base">
               Nutzungsübersicht
             </a>
-            </div>
+          </div>
+      
+      </div>
+    
+      </header>
 
-        </div>
-
-    </header>
-
-    <div class="flex-col container pt-4 mx-auto mt-2 rounded shadow-md bg-gray-300 rounded px-8 pt-6 pb-4 mb-4">
+      <div class="flex-col container pt-4 mx-auto mt-2 rounded shadow-md bg-gray-300 rounded px-8 pt-6 pb-4 mb-4">
 
         <div class="bg-gray-400 shadow-md rounded  px-8 pt-6 pb-8 mb-4">
             <h1 class="font-semibold text-3xl">Neue Unterkategorie anlegen </h1>
             <p>Wählen Sie in welche Überkategorie Sie eine Unterkategorie ergänzen wollen! </p>
             <div class="w-1/2 mt-4 flex-col">
-                <form id="UnterkategorieForm" name="UnterkategorieForm" ">
-                    <select id="selectCategorys " name="selectCategorys " size="1 "  class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline "> </select>
-
-                    <label class="block mt-2 w-auto text-xl font-semibold mb-2 " for="Unterkategorie ">
+                    <form id="UnterkategorieForm" name="UnterkategorieForm"">
+                    <select id="selectCategorys" name="selectCategorys" size="1"  class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"> </select>
+                    
+                    <label class="block mt-2 w-auto  text-xl font-semibold mb-2" for="Unterkategorie">
                          Unterkategorie:
                     </label>
-                    <input type="text " name="Unterkategorie " placeholder="Unterkategorie " class="shadow appearance-none border rounded w-auto md:w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ">
-
-                    <input type="submit "  value="Hinzufügen "  class="bg-blue-500 hover:bg-blue-700 text-white mt-4 w-auto md:w-1/2 md:pl-3 md:pr-3 py-2 px-1 font-bold rounded focus:outline-none focus:shadow-outline " />
+                    <input type="text" name="Unterkategorie" placeholder="Unterkategorie" class="shadow appearance-none border rounded w-auto md:w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    
+                    
+                    <input type="submit"  value="Hinzufügen"  class="bg-blue-500 hover:bg-blue-700 text-white mt-4 w-auto md:w-1/2  md:pl-3 md:pr-3 py-2 px-1 font-bold rounded focus:outline-none focus:shadow-outline" />
                     </form> 
-
+                    
             </div>
+         
+            
+          </div>
+          <div class="bg-gray-400 shadow-md rounded mt-12 px-8 pt-6 pb-8 mb-4">
+            <h1 class="font-semibold text-3xl">Neue Überkategorie anlegen</h1>
+            <div class="w-1/2 mt-2 flex-col">
+            <form id="ÜberkategorieForm" name="ÜberkategorieForm"action="#"">
 
+                <label class="block mt-2  text-xl font-semibold mb-2" for="Überkategorie">
+                    Überkategorie:
+               </label>
+                    <input type="text" name="Überkategorie" placeholder="Überkategorie"class="shadow appearance-none border rounded w-auto md:w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                  
+                    <input type="submit" name="submit" value="Hinzufügen" class="bg-green-500 hover:bg-green-700 text-white mt-4 w-auto md:w-1/2 md:pl-3 md:pr-3 py-2 px-1 font-bold rounded focus:outline-none focus:shadow-outline" />
+                
+            </form>
+        </div>
           </div>
 
-          <div class="bg-gray-400 shadow-md rounded mt-12 px-8 pt-6 pb-8 mb-4 ">
-            <h1 class="font-semibold text-3xl ">Neue Überkategorie anlegen</h1>
-            <div class="w-1/2 mt-2 flex-col ">
-            <form id="ÜberkategorieForm " name="ÜberkategorieForm "action="# "">
+      </div>
 
-                    <label class="block mt-2  text-xl font-semibold mb-2" for="Überkategorie">
-                        Überkategorie:
-                    </label>
-                    <input type="text" name="Überkategorie" placeholder="Überkategorie" class="shadow appearance-none border rounded w-auto md:w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+       
+    
 
-                    <input type="submit" name="submit" value="Hinzufügen" class="bg-green-500 hover:bg-green-700 text-white mt-4 w-auto md:w-1/2 md:pl-3 md:pr-3 py-2 px-1 font-bold rounded focus:outline-none focus:shadow-outline" />
-
-                </form>
-            </div>
-        </div>
-
-    </div>
-
-    <script src="js/neueKategorieAnlegen.js"></script>
+              <script src ="js/neueKategorieAnlegen.js"></script>
 
 </body>
+
 </html>

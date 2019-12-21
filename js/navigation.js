@@ -31,7 +31,7 @@ function callExistingQuestionsPage() {
 }
 
 function callNewQuestionsPage() {
-    window.location = "NeueFrageAnlegen.html";
+    window.location = "neueFrage.html";
 }
 
 function callNewCategoryPage() {
