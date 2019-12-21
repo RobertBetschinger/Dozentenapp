@@ -33,6 +33,7 @@ var select = document.getElementById("selectCategorys");
     }
 
     function fillInDataInDropdown(json) {
+        console.log("fillInDataInDropdown")
         for (var i = 0; i < json.length; i++) {
             var el = document.createElement("OPTGROUP");
             el.label = json[i].category_name;
@@ -94,8 +95,6 @@ var select = document.getElementById("selectCategorys");
         document.forms["FragenForm"]["Wahrheit3"].value =json[0].answers[2].trueOrFalse;
         document.forms["FragenForm"]["Wahrheit4"].value =json[0].answers[3].trueOrFalse;
         document.forms["FragenForm"]["id"].value =json[0]._id;
-       // document.forms["FragenForm"]["index"].value =json
-       //IDEA: SAVE ALL Questions TO Form, SWAP over index
        document.forms["FragenForm"]["index"].value =0
     }
 
@@ -139,7 +138,6 @@ var select = document.getElementById("selectCategorys");
         console.log("Momentaner eingelesner Index: "+ index)
         console.log("Momentaner Fragen Array länge: " + fragenArray.length)
         if(index < laenge){
-            //if(index < fragenArray.length--) das geht nicht...
             index++;
             swapQuestions(fragenArray[index],index)
         }
@@ -149,6 +147,7 @@ var select = document.getElementById("selectCategorys");
     }
 
     function loadQuestions(cValue,sValue){
+        console.log("loadQestion")
     return new Promise((resolve,reject)=>{
 	$.ajax({
         type: 'GET',
@@ -159,15 +158,13 @@ var select = document.getElementById("selectCategorys");
           },
         dataType: 'json',
         success: function (data) {
-                  //let questions = JSON.stringify(data); 
-                    //  console.log(data); 
+                  
                   if(data == undefined || data == null || data.length == 0) {
                   alert('Zu dieser Kategorie gibt es keine Fragen!'); 
                   reject(data)
-                     // window.location.href = './test_lernen.html'; 
+                    
                   } else {
-                     // console.log("Daten Länge")
-                    // console.log(data.length);
+                     
                     resolve(data)
                       
                   }
@@ -245,10 +242,8 @@ var select = document.getElementById("selectCategorys");
 
   
     
-
-
     function sendQuestion(x, y, z, ü, l, boolean, boolean1, boolean2, boolean3, category_name, category_id, subcategory_id, subcategory_name,questionID) {
-
+        console.log("sendQuestion")
         $.ajax({
             type: 'PATCH',
             crossDomain: true,
@@ -337,27 +332,5 @@ var select = document.getElementById("selectCategorys");
         }
     }
   
-
-
-
-
-
-function generateCategorysArray(json){
-    console.log('generateCategorysArray')
-    //console.log(json[0].sub_categories[0].subcategory_name)
-
-    var categorysarray = [[]]
-    var subarray =[]
-    for(var i =0; i<json.length;i++){
-    categorysarray.push(json[i].category_name)
-    for(var j =0; j<json[i].sub_categories.length;j++){
-       subarray.push(json[i].sub_categories[j].subcategory_name)
-       categorysarray.push(json[i].sub_categories[j].subcategory_name)
-    }
-}
-    console.log('Array wird jetzt ausgegeben')
-    console.log(categorysarray)
-    console.log(subarray)
-}
 
   loadData();

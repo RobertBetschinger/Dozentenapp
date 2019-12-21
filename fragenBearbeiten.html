@@ -7,57 +7,7 @@
     <title>Fragen bearbeiten</title>
     <link rel="stylesheet" href="css/tailwindStyle.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-    <script type="text/javascript" charset="utf-8">
-        document.addEventListener("deviceready", onDeviceReady, true);
-
-        function onLoad() {
-            document.addEventListener("deviceready", onDeviceReady, true);
-        }
-
-        function onDeviceReady() {
-            // navigator.notification.alert("PhoneGap is working");
-            document.addEventListener("offline", onOffline, false);
-            document.addEventListener("online", onOnline, false);
-        }
-
-        function callMainMenu() {
-            window.location = "index.html";
-        }
-
-        function onOffline() {
-            alert("Keine Internetverbindung! App nur eingeschränkt verwendungsfähig.");
-        }
-
-        function onOnline() {
-            alert("Internetverbindung wieder vorhanden.");
-        }
-        function callDozentenappPage(){
-          window.location="HomeScreen.html"
-        }
-        function callExistingQuestionsPage()
-             {
-                window.location = "fragenBearbeiten.html";
-             }
-			 
-			 function callNewQuestionsPage()
-             {
-                window.location = "NeueFrageAnlegen.html";
-             }
-
-			 function callNewCategoryPage(){
-				 window.location ="neueKategorieAnlegen.html";
-			 }
-			 
-			 function callStudentPerformancePage()
-             {
-                window.location = "student_performance_page.html";
-             }
-			 
-			 function callUsageOverviewPage()
-			 {
-				window.location = "usage_overview_page.html";
-			 }
-    </script>
+    <script src ="js/navigation.js"></script>
   
       <style>
         #menu-toggle:checked + #menu {
@@ -67,8 +17,7 @@
 </head>
 <body>
 
-  <header class="lg:px-16 px-6 bg-green-600 h-auto md:h-24 flex flex-wrap items-center lg:py-0 py-2">
-              
+  <header class="lg:px-16 px-6 bg-green-600 h-auto md:h-24 flex flex-wrap items-center lg:py-0 py-2">            
     <div class="flex items-center flex-shrink-0 text-white mr-6">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="w-4 h-4 opacity-75">
         <path d="M3.33 8L10 12l10-6-10-6L0 6h10v2H3.33zM0 8v8l2-2.22V9.2L0 8zm10 12l-5-3-2-1.2v-6l7 4.2 7-4.2v6L10 20z"/></svg>
@@ -100,7 +49,6 @@
       </div>
   
   </div>
-
   </header>
         
      <div class="flex-col container pt-4 mx-auto mt-2 rounded shadow-md bg-gray-300 rounded px-8 pt-6 pb-4 mb-4">
@@ -108,7 +56,7 @@
             <h1 class="font-semibold text-3xl">Bestehende Fragen bearbeiten </h1>
             <div>
             <p>Hier können Sie bestehende Fragen bearbeiten.</p>
-            <p>Wählen Sie zunächste eine Kategorie bzw. eine Unterkategorie aus um die dazugehörigen Fragen zu laden.</p>
+            <p>Wählen Sie zunächste eine Kategorie bzw. eine Unterkategorie aus und laden Sie diese anschließend zur Bearbeitung herunter.</p>
             </div>
             <div class="w-1/2 mt-4">
             <select id="selectCategorys" name="selectCategorys" size="1"  class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"> </select>
@@ -127,7 +75,7 @@
             <div class="bg-gray-400 shadow-md rounded  px-8 pt-6 pb-8 mb-4">
                 <form id="FragenForm" name="FragenForm" class="form ">
                     <label class="block mt-2 text-xl font-semibold mb-2" for="Frage">
-                        Neue Frage eingeben:
+                        Frage:
                     </label>
                     <input id="Frage" type="text" name="FragenText" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                     
@@ -191,23 +139,17 @@
                   </div>
                 </form>
                 <div class="mt-6 md:mt-12 flex items-center justify-between">
-                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 pl-3 pr-3 w-auto rounded" onclick="moveLeft()">
-                        Nach Links
+                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 pr-4 w-2/5 md:w-1/6  md:py-2 pl-4 md:py-2 md:pl-3 md:pr-3 w-auto rounded" onclick="moveLeft()">
+                        Vorherige <br>Frage
                       </button>
         
-                      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 pl-3 pr-3 w-auto rounded" onclick="moveRight()">
-                        Nach Rechts
+                      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 pr-4 w-2/5 md:w-1/6 md:py-2 pl-4  md:py-2 md:pl-3 md:pr-3 w-auto rounded" onclick="moveRight()">
+                        Nächste <br>Frage
                       </button>
                 </div>
             </div>
-            <br>
-            <br>
-            <br>
-
-              
-
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>        
-    <script src="js/fragen_bearbeiten.js"></script>
+          
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>        
+            <script src="js/fragen_bearbeiten.js"></script>y       
 </body>
 </html>

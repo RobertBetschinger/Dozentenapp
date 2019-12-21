@@ -1,127 +1,81 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-		<link rel="stylesheet" href="css/tailwindStyle.css">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dozentenapp</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <link rel="stylesheet" href="css/tailwindStyle.css">
+    <script src ="js/navigation.js"></script>
+
+    
+<style>
+  .gradient {
+    background: linear-gradient(90deg, #939492 0%, #6c7597 100%);
+  }
+  #menu-toggle:checked + #menu {
+      display: block;
+    }
+</style>
+   
+</head>
+
+<body class="leading-normal tracking-normal text-white gradient">
+  <header class="lg:px-16 px-6 bg-green-600 h-auto md:h-24 flex flex-wrap items-center lg:py-0 py-2">
+              
+    <div class="flex items-center flex-shrink-0 text-white mr-6">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="w-4 h-4 opacity-75">
+        <path d="M3.33 8L10 12l10-6-10-6L0 6h10v2H3.33zM0 8v8l2-2.22V9.2L0 8zm10 12l-5-3-2-1.2v-6l7 4.2 7-4.2v6L10 20z"/></svg>
+        <span class="font-semibold text-2xl tracking-tight m-2">Universität Regensburg</span>
+      </div>
+
+  <label for="menu-toggle" class="pointer-cursor lg:hidden block"><svg class="fill-current text-gray-900" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><title>menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path></svg></label>
+  <input class="hidden" type="checkbox" id="menu-toggle" />
+
+  <div class="hidden lg:flex lg:items-center lg:w-auto w-full" id="menu">
+    <div class="text-sm lg:flex-grow ">
+        <a href="#responsive-header" class="block mt-4 w-1/8 pl-6 pr-6 lg:inline-block lg:mt-0 text-teal-100 hover:text-white mr-4 text-base">
+          <button id="existing_questions_button" class="button_main" type="button" onclick="callDozentenappPage()">Dozentenapp</button>
+        <a href="#responsive-header" class="block mt-4  w-1/8 pl-6  pr-6 lg:inline-block lg:mt-0 text-teal-100 hover:text-white mr-4 text-base">        		 
+      		<button id="new_question_button" class="button_main" type="button" onclick="callNewQuestionsPage()">Neue Frage anlegen</button> 
+        </a>
+        <a href="#responsive-header" class="block mt-4 w-1/8  pl-6  pr-6 lg:inline-block lg:mt-0 text-teal-100 hover:text-white text-base">
+          <button id="new_category_button" class="button_main" type="button" onclick="callNewCategoryPage()">Neue Kategorie anlegen</button> 
+        </a>
+        <a href="#responsive-header" class="block mt-4 w-1/8 pl-6  pr-6 lg:inline-block lg:mt-0 text-teal-100 hover:text-white text-base">
+          <button id="existing_questions_button" class="button_main" type="button" onclick="callExistingQuestionsPage()">Bestehende Fragen </button>
+        </a>
+        <a href="#responsive-header" class="block mt-4 w-1/8  pl-6  pr-6 lg:inline-block lg:mt-0 text-teal-100 hover:text-white text-base">
+         Leistungsübersicht
+        </a>
+        <a href="#responsive-header" class="block mt-4 w-1/8 pl-6  pr-6 lg:inline-block lg:mt-0 text-teal-100 hover:text-white text-base">
+          Nutzungsübersicht
+        </a>
+      </div>
+  
+  </div>
+
+  </header>
+
         
-		<title>Startseite Dozentenapp</title>
+        <div class=" flex-col flex  mx-auto m-2 mx-4 w-2/3">
+       
+              <h1 class="text-3xl text-center">Dozentenapp</h1>
+            
+            <p class=" p-4">Im Rahmen des Projektseminars soll eine Anwendung oder ein Web-Service, welches den Datenbestand zweier Web-Apps mittels einer Schnittstelle synchronisiert, entwickelt werden. Zur Bearbeitung dieses Projektseminares sind Vorkenntnisse in JavaScript und der Umgang mit JSON Objekten vorteilhaft. Ziel des Seminars ist die funktionsfähige Inbetriebnahme der REST-basierten Synchronisationskomponente.</p> 
+              <p class ="p-4">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+              <div class="border-b my-6"></div>
+              
+              
+              <p class="m-auto text-3xl">Navigation</p>
+        </div>
+ 
 
-		<script type="text/javascript" charset="utf-8" src="cordova-1.5.0.js"></script>
-        <script type="text/javascript" charset="utf-8">
 
-			document.addEventListener("deviceready", onDeviceReady, true);
-		
-             function onLoad()
-             {
-					document.addEventListener("deviceready", onDeviceReady, true);
-			 }
 
-             function onDeviceReady()
-             {
-                  // navigator.notification.alert("PhoneGap is working");
-				  document.addEventListener("offline", onOffline, false);
-				  document.addEventListener("online", onOnline, false);
-             }
 
-             function callExistingQuestionsPage()
-             {
-                window.location = "existing_questions_page.html";
-             }
-			 
-			 function callNewQuestionsPage()
-             {
-                window.location = "NeueFrageAnlegen.html";
-             }
-
-			 function callNewCategoryPage(){
-				 window.location ="neueKategorieAnlegen.html";
-			 }
-			 
-			 function callStudentPerformancePage()
-             {
-                window.location = "student_performance_page.html";
-             }
-			 
-			 function callUsageOverviewPage()
-			 {
-				window.location = "usage_overview_page.html";
-			 }
-			 
-			function onOffline() {
-				alert("Keine Internetverbindung! App nur eingeschränkt verwendungsfähig.");
-			}
-			
-			function onOnline() {
-				alert("Internetverbindung wieder vorhanden.");
-			}
-
-        </script>
-		
-		<!--
-		icon authors:
-		edit_pencil: Icons made by "https://www.flaticon.com/authors/icomoon" Icomoon from "https://www.flaticon.com/" www.flaticon.com is licensed by "http://creativecommons.org/licenses/by/3.0/" CC 3.0
-		arrow_left: Icons made by "https://www.flaticon.com/authors/dave-gandy" Dave Gandy from "https://www.flaticon.com/" www.flaticon.com is licensed by "http://creativecommons.org/licenses/by/3.0/" CC 3.0
-		
-		source logo ur:
-		https://de.wikipedia.org/wiki/Datei:Universit%C3%A4t_Regensburg_logo.svg
-		-->
-		
-	</head>
-    <body>
-        <script type="text/javascript" src="cordova.js"></script>
-		<div id="content">
-		
-		<h1 id="top_mainPage">Dozentenapp</h1>
-		
-		<p>Hier kann zu anderen Seiten navigiert werden</p>
-		
-		<br/>
-		
-		<div id="logo_mainPage">
-			<img id="logo_ur" src="images/logo_ur.svg" alt="Logo Uni Regensburg"/> 
-			<img id="corporateLine_wiwi" src="images/wiwi_corporate.png" alt=""/>
-		</div>
-		
-		<br />
-		
-		<button id="existing_questions_button" class="button_main" type="button" onclick="callExistingQuestionsPage()">Bestehende Fragen</button>
-		 
-		<br/>
-		 
-		<button id="new_question_button" class="button_main" type="button" onclick="callNewQuestionsPage()">Neue Frage anlegen</button> 
-		 
-		<br/>
-
-		<button id="new_category_button" class="button_main" type="button" onclick="callNewCategoryPage()">Neue Kategorie anlegen</button> 
-		 
-		<br/>
-		 
-		<button id="student_performance_button" class="button_main" type="button" onclick="callStudentPerformancePage()">Leistungsübersicht</button>
-
-		<br/>
-		 
-		<button id="usage_overview_button" class="button_main" type="button" onclick="callUsageOverviewPage()">Nutzungsübersicht</button>
-		
-		</div>
-		
-		<script type="text/javascript">
-			function checkConnection() {
-				var networkState = navigator.connection.type;
-
-				var states = {};
-				states[Connection.UNKNOWN]  = 'Unknown connection';
-				states[Connection.ETHERNET] = 'Ethernet connection';
-				states[Connection.WIFI]     = 'WiFi connection';
-				states[Connection.CELL_2G]  = 'Cell 2G connection';
-				states[Connection.CELL_3G]  = 'Cell 3G connection';
-				states[Connection.CELL_4G]  = 'Cell 4G connection';
-				states[Connection.CELL]     = 'Cell generic connection';
-				states[Connection.NONE]     = 'No network connection';
-
-				alert('Connection type: ' + states[networkState]);
-			}
-		</script>
-		
-    </body>
+      </body>
 </html>

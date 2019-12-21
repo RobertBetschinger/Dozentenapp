@@ -1,48 +1,3 @@
-/*
-const left = document.querySelector(".left");
-const right = document.querySelector(".right");
-const container = document.querySelector(".container");
-
-left.addEventListener("mouseenter", () => {
-  container.classList.add("hover-left");
-});
-
-left.addEventListener("mouseleave", () => {
-  container.classList.remove("hover-left");
-});
-
-right.addEventListener("mouseenter", () => {
-  container.classList.add("hover-right");
-});
-
-right.addEventListener("mouseleave", () => {
-  container.classList.remove("hover-right");
-});
-*/
-document.addEventListener("deviceready", onDeviceReady, true);
-
-function onLoad() {
-    document.addEventListener("deviceready", onDeviceReady, true);
-}
-
-function onDeviceReady() {
-    // navigator.notification.alert("PhoneGap is working");
-    document.addEventListener("offline", onOffline, false);
-    document.addEventListener("online", onOnline, false);
-}
-
-function callMainMenu() {
-    window.location = "index.html";
-}
-
-function onOffline() {
-    alert("Keine Internetverbindung! App nur eingeschränkt verwendungsfähig.");
-}
-
-function onOnline() {
-    alert("Internetverbindung wieder vorhanden.");
-}
-
 var select = document.getElementById("selectCategorys");
 const myForm = document.getElementById("UnterkategorieForm")
 const überkategoireForm= document.getElementById("ÜberkategorieForm")    
@@ -65,16 +20,13 @@ loadData();
             alert('Es konnten keine Kategorien geladen werden, wsl. sind noch keine Kategorien vorhanden!'); 
                 window.location.href = './test_lernen.html'; 
             } else {
-                // generateCategorysArray(data)
-                //  console.table(data.sub_categories);
+                
                 var string = JSON.stringify(data)
-                //console.log('Testen des Strings auf Inhalt')
-                // console.log(string);
-                //console.log('Testen des Parsen auf JSON')
+              
                 var json = JSON.parse(string)
-                // console.log(json[0].category_name)
+                
                 fillInDataInDropdown(json)
-                //generateCategorysArray(json)
+                
             }
         },
         error: function (result){ 
@@ -87,6 +39,7 @@ loadData();
 
         
     function fillInDataInDropdown(json) {
+        console.log("fillInDataInDropdown")
         for (var i = 0; i < json.length; i++) {
             
             var el = document.createElement("option");
@@ -95,10 +48,7 @@ loadData();
             el.lang = json[i].category_id
             var length = json[i].sub_categories.length
             length--
-           // alert(json[i].category_name + "Sub Länge"+ length)
             el.data = json[i].sub_categories[length].subcategory_id
-            
-            // el.id = json.categories[i].category_name;
             select.appendChild(el)
         }
     }
@@ -192,6 +142,7 @@ loadData();
     })
 
     function sendCategory(categoryid,categoryName){
+        console.log("SendCategory")
         $.ajax({
             type: 'POST',
             crossDomain: true,
