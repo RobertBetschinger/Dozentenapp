@@ -13,16 +13,13 @@ var select = document.getElementById("selectCategorys");
            alert('Es konnten keine Kategorien geladen werden, wsl. sind noch keine Kategorien vorhanden!'); 
                window.location.href = './test_lernen.html'; 
            } else {
-              // generateCategorysArray(data)
-             //  console.table(data.sub_categories);
+             
              var string = JSON.stringify(data)
-             //console.log('Testen des Strings auf Inhalt')
-            // console.log(string);
-             //console.log('Testen des Parsen auf JSON')
+           
             var json = JSON.parse(string)
-            // console.log(json[0].category_name)
+            
             fillInDataInDropdown(json)
-             //generateCategorysArray(json)
+            
            }
    },
    error: function (result){ 
@@ -58,6 +55,8 @@ var select = document.getElementById("selectCategorys");
     const fragenForm = document.getElementById("FragenForm");
 
  
+
+
     function loadParameters(){
         sValue =$("option:selected", select).text()
         var selectBox = document.getElementById("selectCategorys");
@@ -65,6 +64,18 @@ var select = document.getElementById("selectCategorys");
         var optgroup = op.parentNode;
         var cValue = optgroup.label
         console.log(sValue)
+
+        fragenData = loadQuestions(cValue,sValue).then(data=>{
+            console.log("JSON Sollte kommen");
+            var string= JSON.stringify(data);
+            var json = JSON.parse(string)
+            fragenArray = json
+            console.log(json[0]);
+            fillInQuestionnHTML(json);
+        }).catch((data)=>
+        reject(data)
+        )
+/*
          fragenData = new Promise((resolve,reject)=>{
             loadQuestions(cValue,sValue).then(data=>{
                 console.log("Promise")
@@ -81,7 +92,11 @@ var select = document.getElementById("selectCategorys");
         console.log(json[0]);
         fillInQuestionnHTML(json);
     })
+    */
 }
+
+
+
     function fillInQuestionnHTML(json){
         console.log("FillInQuestionHTML")
         document.forms["FragenForm"]["Frage"].value =json[0].question;
