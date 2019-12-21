@@ -1,6 +1,6 @@
 $(document).ready(function() {
     loadData()
-    });
+});
 
 function getRndInteger(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -48,13 +48,13 @@ function fillInDataInDropdown(json) {
         el.value = json[i].category_id;
 
         for (var j = 0; j < json[i].sub_categories.length; j++) {
-            if(json[i].sub_categories[j].subcategory_id!= undefined){
-            
-            var ellsub = document.createElement("option");
-            ellsub.label = json[i].sub_categories[j].subcategory_name;
-            ellsub.value = json[i].sub_categories[j].subcategory_id;              
-            ellsub.text=json[i].sub_categories[j].subcategory_name;
-            el.appendChild(ellsub);
+            if (json[i].sub_categories[j].subcategory_id != undefined) {
+
+                var ellsub = document.createElement("option");
+                ellsub.label = json[i].sub_categories[j].subcategory_name;
+                ellsub.value = json[i].sub_categories[j].subcategory_id;
+                ellsub.text = json[i].sub_categories[j].subcategory_name;
+                el.appendChild(ellsub);
             }
         }
         select.appendChild(el)
@@ -63,7 +63,6 @@ function fillInDataInDropdown(json) {
 
 myForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    
 
     var x = document.forms["FragenForm"]["FragenText"].value;
     var y = document.forms["FragenForm"]["Antwort1"].value;
@@ -79,7 +78,7 @@ myForm.addEventListener("submit", (e) => {
         boolean3 = turnBackRadioButton(document.getElementsByName('Wahrheit4'));
 
         var subcategory_id = document.getElementById("selectCategorys").value;
-         sValue = $("option:selected", select).text()
+        sValue = $("option:selected", select).text()
         console.log(sValue)
         var selectBox = document.getElementById("selectCategorys");
         var op = selectBox.options[selectBox.selectedIndex];

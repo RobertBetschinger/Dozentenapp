@@ -21,30 +21,27 @@ function onOffline() {
 function onOnline() {
     alert("Internetverbindung wieder vorhanden.");
 }
-function callDozentenappPage()
-{
-  window.location="index.html"
-}
-function callExistingQuestionsPage()
-     {
-        window.location = "fragenBearbeiten.html";
-     }
 
-function callNewQuestionsPage()
-     {
-        window.location = "NeueFrageAnlegen.html";
-     }
-
-function callNewCategoryPage(){
- window.location ="neueKategorieAnlegen.html";
+function callDozentenappPage() {
+    window.location = "index.html"
 }
 
-function callStudentPerformancePage()
-     {
-        window.location = "student_performance_page.html";
-     }
+function callExistingQuestionsPage() {
+    window.location = "fragenBearbeiten.html";
+}
 
-function callUsageOverviewPage()
-{
-window.location = "usage_overview_page.html";
+function callNewQuestionsPage() {
+    window.location = "NeueFrageAnlegen.html";
+}
+
+function callNewCategoryPage() {
+    window.location = "neueKategorieAnlegen.html";
+}
+
+function callStudentPerformancePage() {
+    window.location = "student_performance_page.html";
+}
+
+function callUsageOverviewPage() {
+    window.location = "usage_overview_page.html";
 }
