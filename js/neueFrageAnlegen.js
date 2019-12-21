@@ -86,8 +86,8 @@ myForm.addEventListener("submit", (e) => {
 
         var category_id = optgroup.value
         var category_name = optgroup.label
-        alert(sValue);
-        alert(subcategory_id)
+
+    
         sendQuestion(x, y, z, ü, l, boolean, boolean1, boolean2, boolean3, category_name, category_id, subcategory_id, sValue);
     }
 
