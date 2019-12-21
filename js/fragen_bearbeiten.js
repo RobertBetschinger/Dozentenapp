@@ -1,5 +1,12 @@
+$(document).ready(function() {
+loadData();
+});
+
+
 var select = document.getElementById("selectCategorys");
-    function loadData(){
+    
+
+function loadData(){
         console.log("loadData")
     $.ajax({
  type: 'GET',
@@ -28,7 +35,7 @@ var select = document.getElementById("selectCategorys");
    }
 })
     }
-
+   
     function fillInDataInDropdown(json) {
         console.log("fillInDataInDropdown")
         for (var i = 0; i < json.length; i++) {
@@ -48,6 +55,7 @@ var select = document.getElementById("selectCategorys");
             select.appendChild(el)
         }
     }
+
 
     const questionsbutton = document.getElementById("loadQuestions");
     let fragenArray
@@ -196,9 +204,12 @@ var select = document.getElementById("selectCategorys");
 
     const myForm = document.getElementById("FragenForm");
 
+    $(document).ready(function() {
     document.querySelector('#update').addEventListener("click", update)
+    });
 
    function update(){
+    console.log("Update")
         
     var x = document.forms["FragenForm"]["FragenText"].value;
     var y = document.forms["FragenForm"]["Antwort1"].value;
@@ -235,10 +246,13 @@ var select = document.getElementById("selectCategorys");
     var questionID= document.forms["FragenForm"]["id"].value;
     
     deleteQuestion(questionID);
+    fragenArray=null;
     document.getElementById("FragenForm").reset();
    }
 
+
    function deleteQuestion(questionID){
+       console.log("deleteQuestion")
     $.ajax({
         type: 'Delete',
         crossDomain: true,
@@ -348,4 +362,3 @@ var select = document.getElementById("selectCategorys");
     }
   
 
-  loadData();

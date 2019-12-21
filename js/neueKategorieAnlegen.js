@@ -1,8 +1,9 @@
 var select = document.getElementById("selectCategorys");
 const myForm = document.getElementById("UnterkategorieForm")
 const überkategoireForm= document.getElementById("ÜberkategorieForm")    
-
-loadData();
+$(document).ready(function() {
+    loadData()
+    });
 
     function loadData(){
             console.log("loadData")
