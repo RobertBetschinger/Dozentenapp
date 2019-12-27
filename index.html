@@ -14,7 +14,7 @@
 
     <style>
         .gradient {
-            background: linear-gradient(90deg, #939492 0%, #6c7597 100%);
+            background: linear-gradient(90deg, #6a6b6a 0%, #6e79a0 100%);
         }
         
         #menu-toggle:checked + #menu {
@@ -56,11 +56,11 @@
                         <button id="existing_questions_button" class="button_main" type="button" onclick="callExistingQuestionsPage()">Bestehende Fragen </button>
                     </a>
                     <a href="#responsive-header" class="block mt-4 w-1/8  pl-6  pr-6 lg:inline-block lg:mt-0 text-teal-100 hover:text-white text-base">
-         Leistungsübersicht
-        </a>
+                        <button id="existing_questions_button" class="button_main" type="button" onclick="callStudentPerformancePage()">Leistungsübersicht </button>
+                 </a>
                     <a href="#responsive-header" class="block mt-4 w-1/8 pl-6  pr-6 lg:inline-block lg:mt-0 text-teal-100 hover:text-white text-base">
-          Nutzungsübersicht
-        </a>
+                        <button id="existing_questions_button" class="button_main" type="button" onclick="callUsageOverviewPage()">Nutzungsübersicht </button>
+                 </a>
             </div>
 
         </div>
@@ -69,14 +69,31 @@
 
     <div class=" flex-col flex  mx-auto m-2 mx-4 w-2/3">
 
-        <h1 class="text-3xl text-center">Dozentenapp</h1>
+        <h1 class="text-4xl font-bold text-center">Dozentenapp</h1>
+        
 
-        <p class=" p-4">Im Rahmen des Projektseminars soll eine Anwendung oder ein Web-Service, welches den Datenbestand zweier Web-Apps mittels einer Schnittstelle synchronisiert, entwickelt werden. Zur Bearbeitung dieses Projektseminares sind Vorkenntnisse in JavaScript und der Umgang mit JSON Objekten vorteilhaft. Ziel des Seminars ist die funktionsfähige Inbetriebnahme der REST-basierten Synchronisationskomponente.</p>
-        <p class="p-4">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+        <p class=" p-4">Im Rahmen des Projektseminars wurde zwei Web-Apps entwickelt, um Studenten eine einfache und moderene Möglichkeit zu bieten ihr Wissen zu testen und zu prüfen. Die Dozentenapp ist dabei der Part des Projektseminar der für die Professoren und Lehrstühle gedacht ist. Dieser Web-Service ermöglicht das erstellen von Fragen bzw. Fragebögen eingeteilt in Kategorien und Subkategorien. Die Studentenapp bietet den Studenten dann die Möglichkeit die Fragen zu lernen und realitätsnah in einer Prüfung abzufragen. Der Datenbestand ist dabei der identisch und wird mittels 
+            einer RestApi und einem zentralen MongoDB Server synchronisiert. Die Idee dieses Projekts fußt auf zwei bereits vorhandenen Web-Apps, diese wurden jedoch komplett überarbeitet, da Sie lediglich Front-End Applications ohne Schnittstellen bzw. einen zentralen Datenbestand, der für die logische Verwendung dieses Projekts zwingend
+             notwendig ist, dargestellt haben. Bei der Neu-Entwicklung dieser Apps wurde auch das UI komplett überarbeit und hingegen modernen UI-Standarts sowie Muss-Kriterien wie z.B eine Smartphone-Kompatibiität und eine einfache Bedienbarkeit entwickelt. Die neue Logik hinter den Fragen ermöglicht es nun auch mehrere Antwortmöglichkeiten gleichzeitig als Wahr einzustufen. Module eines Lehrstuhls können dabei in "Kategorien" eingeteilt werden, und zugehörige Unterthemen in "Subkategorien" einzuteilen. Fragen können im Nachhinein einfach bearbeitet oder gelöscht werden. </p>
+
+        
         <div class="border-b my-6"></div>
+        <h1 class="text-3xl font-bold text-center">Kurzanleitung</h1>
+        <p class=" p-4">Sie benutzen die Dozentenapp zum ersten Mal und wollen Fragen hochladen um sie Ihren Studenten zur Verfügung zu stellen? Folgen Sie einfach folgenden Schritten.</p>
+        <ol class="p-4 font-semibold list-decimal">
+            <li class="m-2">Erstellen Sie zunächst eine neue Überkategorie auf der Seite "Neue Kategorie anlegen"</li>
+            <li class="m-2">Erstellen Sie anschließend einer neue Subkategorie bei der zugeörigen gerade erstellen Überkategorie.</li>
+            <li class="m-2">Wechseln die auf die Seite "Neue Fragen anlegen" und legen Sie ihre Fragen in der entsprechenden SubKategorie an.</li>
+            <li class="m-2">Testen Sie ihre Fragen in der "Studentenapp"</li>
+            <li class="m-2">Fehlerhafte Fragen können sie in der Seite "Bestehende Fragen" bearbeiten oder löschen</li>
+            <li class="m-2">Nachdem ihre Studenten die Fragen bearbeitet haben, können Sie die Statistiken in der Seite "Leistungsübersicht einsehen".</li>
+            
+          </ol>
+          <div class="border-b my-6"></div>
 
-        <p class="m-auto text-3xl">Navigation</p>
+        
     </div>
+    
 
 </body>
 
