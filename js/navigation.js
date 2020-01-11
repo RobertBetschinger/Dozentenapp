@@ -43,5 +43,5 @@ function callStudentPerformancePage() {
 }
 
 function callUsageOverviewPage() {
-    window.location = "usage_overview_page.html";
+    window.alert("Diese Funktion ist noch nicht implementiert!")
 }

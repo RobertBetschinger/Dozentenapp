@@ -57,6 +57,7 @@ loadData();
         e.preventDefault();
         var selectBox = document.getElementById("selectCategorys");
         var op = selectBox.options[selectBox.selectedIndex];
+        var catName= op.label
         categoryID= op.value
         
         
@@ -92,6 +93,8 @@ loadData();
         else{
          
           sendSubCategory(categoryID,subID,subcategory_name);
+          createNewStat(categoryID,catName,subID,subcategory_name)
+          document.getElementById("UnterkategorieForm").reset();
         }
         
     })
@@ -120,6 +123,37 @@ loadData();
         })
     }
 
+    function createNewStat (categoryid,catName,subID,subcategory_name) { 
+        var a = parseInt(categoryid)
+        var b = parseFloat(subID)
+        console.log()
+        $.ajax({
+            type: 'POST',
+            crossDomain: true,
+            url: 'https://projektseminarlfrb.herokuapp.com/stats',
+            data: JSON.stringify({
+                "category_id":a,
+                "category_name":catName,
+                "subcategory_id":b,
+                "subcategory_name":subcategory_name,
+                "aCorr": 0,
+                "aFalse": 0
+            }),
+            dataType: 'json',
+            contentType: 'application/json',
+            success: function() {
+               // alert('Die neue Statistik wurde erfolgreich hinzugefügt');
+            },
+            error: function(result) {
+                console.log(result);
+                alert("Es gab einen Fehler beim Hochladen der neuen Statistik Kategorie, bitte kontaktieren Sie den Datenbank Admin");
+            }
+            
+
+        })
+        
+}
+
 
     überkategoireForm.addEventListener("submit", (e) => {
         e.preventDefault();
@@ -134,9 +168,10 @@ loadData();
             return false;
         }
         else{
-            alert(lastValue)
-            alert(categoryName)
+            //alert(lastValue)
+            //alert(categoryName)
           sendCategory(lastValue,categoryName)
+          document.getElementById("ÜberkategorieForm").reset();
         }
         
     })
