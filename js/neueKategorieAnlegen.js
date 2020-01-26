@@ -1,6 +1,8 @@
 var select = document.getElementById("selectCategorys");
+var selectForDelete = document.getElementById("selectCategorysDelete");
 const myForm = document.getElementById("UnterkategorieForm")
-const überkategoireForm= document.getElementById("ÜberkategorieForm")    
+const überkategoireForm= document.getElementById("ÜberkategorieForm") 
+const überkategoireFormDelete = document.getElementById("ÜberkategorieFormDelete") 
 
 loadData();
 
@@ -18,7 +20,7 @@ loadData();
             console.table(data); 
             if(data == undefined || data == null || data.length == 0) {
             alert('Es konnten keine Kategorien geladen werden, wsl. sind noch keine Kategorien vorhanden!'); 
-                window.location.href = './test_lernen.html'; 
+                
             } else {
                 
                 var string = JSON.stringify(data)
@@ -26,6 +28,7 @@ loadData();
                 var json = JSON.parse(string)
                 
                 fillInDataInDropdown(json)
+                fillInDataInDropdownDelete(json)
                 
             }
         },
@@ -50,6 +53,21 @@ loadData();
             length--
             el.data = json[i].sub_categories[length].subcategory_id
             select.appendChild(el)
+        }
+    }
+
+    function fillInDataInDropdownDelete(json) {
+        console.log("fillInDataInDropdownDelete")
+        for (var i = 0; i < json.length; i++) {
+            
+            var el = document.createElement("option");
+            el.value = json[i]._id;
+            el.label = json[i].category_name;
+            el.lang = json[i].category_id
+            var length = json[i].sub_categories.length
+            length--
+            el.data = json[i].sub_categories[length].subcategory_id
+            selectForDelete.appendChild(el)
         }
     }
 
@@ -102,6 +120,7 @@ loadData();
 
     function sendSubCategory(categoryID,subID,subcategory_name) {
         var string = categoryID
+
         $.ajax({
             type: 'PATCH',
             crossDomain: true,
@@ -114,6 +133,7 @@ loadData();
             contentType: 'application/json',
             success: function() {
                 alert('Die Kategorie wurde erfolgreich erweitert');
+                location.reload();
             },
             error: function(result) {
                 console.log(result);
@@ -159,12 +179,16 @@ loadData();
         e.preventDefault();
 
         var theSelect = document.getElementById('selectCategorys');
-        var lastValue = theSelect.options[theSelect.options.length - 1].lang;
-        lastValue++
-
+        if(theSelect.options[theSelect.options.length - 1] === undefined){
+            lastValue = parseFloat(1);
+        }
+        else{
+            var lastValue = theSelect.options[theSelect.options.length - 1].lang;
+            lastValue++
+        }
         categoryName = document.forms["ÜberkategorieForm"]["Überkategorie"].value;
         if(categoryName ==""){
-            alert("Bitte geben sie Eine Überkategorie ein")
+            alert("Bitte geben sie eine Überkategorie ein")
             return false;
         }
         else{
@@ -190,6 +214,7 @@ loadData();
             contentType: 'application/json',
             success: function() {
                 alert('Die neue Kategorie wurde erfolgreich hinzugefügt');
+                location.reload();
             },
             error: function(result) {
                 console.log(result);
@@ -197,4 +222,38 @@ loadData();
             }
 
         })
+    }
+
+    überkategoireFormDelete.addEventListener("submit", (e) => {
+        e.preventDefault();
+        var selectBox = document.getElementById("selectCategorysDelete");
+        var op = selectBox.options[selectBox.selectedIndex];
+        var catName= op.label
+        categoryID= op.value
+      
+               
+          deleteCategory(categoryID);
+          
+        
+        
+    })
+
+    function deleteCategory(categoryid){
+        console.log("DeleteCategory")
+        $.ajax({
+            type: 'Delete',
+            crossDomain: true,
+            url: 'https://projektseminarlfrb.herokuapp.com/categorys' + '/' + categoryid,  
+            success: function() {
+                alert('Die  Kategorie wurde erfolgreich gelöscht');
+                location.reload();
+            },
+            error: function(result) {
+                console.log(result);
+                alert("Es gab einen Fehler beim Löschen der Überkategorie");
+            }
+
+        })
+
+        
     }
