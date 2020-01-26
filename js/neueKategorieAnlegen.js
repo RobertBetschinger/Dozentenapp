@@ -110,9 +110,14 @@ loadData();
         }
         else{
          
-          sendSubCategory(categoryID,subID,subcategory_name);
-          createNewStat(categoryID,catName,subID,subcategory_name)
-          document.getElementById("UnterkategorieForm").reset();
+            if (confirm('Sind Sie sich sicher das Sie diese Subkategorie hinzufügen wollen?')) {
+                sendSubCategory(categoryID,subID,subcategory_name);
+                createNewStat(categoryID,catName,subID,subcategory_name)
+                document.getElementById("UnterkategorieForm").reset();
+            } else {
+                // Do nothing!
+            }
+          
         }
         
     })
@@ -133,7 +138,7 @@ loadData();
             contentType: 'application/json',
             success: function() {
                 alert('Die Kategorie wurde erfolgreich erweitert');
-                location.reload();
+                
             },
             error: function(result) {
                 console.log(result);
@@ -192,10 +197,15 @@ loadData();
             return false;
         }
         else{
-            //alert(lastValue)
-            //alert(categoryName)
-          sendCategory(lastValue,categoryName)
-          document.getElementById("ÜberkategorieForm").reset();
+
+            if (confirm('Sind Sie sich sicher das Sie diese Kategorie hinzufügen wollen?')) {
+                sendCategory(lastValue,categoryName)
+                document.getElementById("ÜberkategorieForm").reset();
+            } else {
+                // Do nothing!
+            }
+            
+         
         }
         
     })
@@ -214,7 +224,7 @@ loadData();
             contentType: 'application/json',
             success: function() {
                 alert('Die neue Kategorie wurde erfolgreich hinzugefügt');
-                location.reload();
+                
             },
             error: function(result) {
                 console.log(result);
