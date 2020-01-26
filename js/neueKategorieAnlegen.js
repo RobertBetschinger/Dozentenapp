@@ -230,9 +230,15 @@ loadData();
         var op = selectBox.options[selectBox.selectedIndex];
         var catName= op.label
         categoryID= op.value
+
+        if (confirm('Sind Sie sich sicher das Sie diese Kategorie löschen wollen?')) {
+            deleteCategory(categoryID);
+        } else {
+            // Do nothing!
+        }
       
                
-          deleteCategory(categoryID);
+        
           
         
         
