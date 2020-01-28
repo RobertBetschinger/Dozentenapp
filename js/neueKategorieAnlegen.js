@@ -77,6 +77,9 @@ loadData();
         var op = selectBox.options[selectBox.selectedIndex];
         var catName= op.label
         categoryID= op.value
+        catShortID = op.lang
+        
+
         
         
             var subID =parseFloat(op.data)
@@ -112,7 +115,7 @@ loadData();
          
             if (confirm('Sind Sie sich sicher das Sie diese Subkategorie hinzufügen wollen?')) {
                 sendSubCategory(categoryID,subID,subcategory_name);
-                createNewStat(categoryID,catName,subID,subcategory_name)
+                createNewStat(catShortID,catName,subID,subcategory_name)
                 document.getElementById("UnterkategorieForm").reset();
             } else {
                 // Do nothing!
@@ -182,14 +185,20 @@ loadData();
 
     überkategoireForm.addEventListener("submit", (e) => {
         e.preventDefault();
+       
 
-        var theSelect = document.getElementById('selectCategorys');
-        if(theSelect.options[theSelect.options.length - 1] === undefined){
+        if(select.options.length === 0){
+        
             lastValue = parseFloat(1);
+            alert("Firstselect")
+            alert(lastValue)
         }
         else{
-            var lastValue = theSelect.options[theSelect.options.length - 1].lang;
+            var lastValue = select.options[select.options.length - 1].lang;
             lastValue++
+            alert("Second Select")
+            alert(select.options[select.options.length - 1].lang)
+            alert(lastValue)
         }
         categoryName = document.forms["ÜberkategorieForm"]["Überkategorie"].value;
         if(categoryName ==""){
@@ -239,19 +248,19 @@ loadData();
         var selectBox = document.getElementById("selectCategorysDelete");
         var op = selectBox.options[selectBox.selectedIndex];
         var catName= op.label
-        categoryID= op.value
+        categoryID= parseFloat(op.lang)
+        objectID =  op.value
+        catIDStat = op.lang
 
         if (confirm('Sind Sie sich sicher das Sie diese Kategorie löschen wollen?')) {
-            deleteCategory(categoryID);
+            deleteCategory(objectID);
+            deleteQuestionsFromCategory(categoryID)
+            
+            deleteState(catIDStat)
         } else {
             // Do nothing!
         }
-      
-               
-        
-          
-        
-        
+     
     })
 
     function deleteCategory(categoryid){
@@ -261,15 +270,64 @@ loadData();
             crossDomain: true,
             url: 'https://projektseminarlfrb.herokuapp.com/categorys' + '/' + categoryid,  
             success: function() {
-                alert('Die  Kategorie wurde erfolgreich gelöscht');
-                location.reload();
+                console.log('Die  Kategorie wurde erfolgreich gelöscht');
+                
             },
             error: function(result) {
                 console.log(result);
                 alert("Es gab einen Fehler beim Löschen der Überkategorie");
             }
 
-        })
-
-        
+        })  
     }
+
+    function deleteQuestionsFromCategory(categoryid,categoryName){
+        console.log("DeleteQuestionsFromCategory")
+        $.ajax({
+            type: 'Delete',
+            crossDomain: true,
+            url: 'https://projektseminarlfrb.herokuapp.com/questions',
+            data: JSON.stringify({
+                "category_id":categoryid,
+            }),
+            dataType: 'json',
+            contentType: 'application/json',
+            success: function() {
+                console.log('Alle Fragen zur Gelöschten Kategorie wurden ebenfalls entfernt!');
+                
+            },
+            error: function(result) {
+                console.log(result);
+                alert("Es gab einen Fehler beim Löschen der zur Überkategorie gehörigen Fragen. Bitte wenden Sie sich an den Datenbankadministrator!");
+            }
+
+        })
+    }
+
+    function deleteState (categoryid) { 
+        var a = parseInt(categoryid)
+        console.log()
+        $.ajax({
+            type: 'Delete',
+            crossDomain: true,
+            url: 'https://projektseminarlfrb.herokuapp.com/stats',
+            data: JSON.stringify({
+                "category_id":a,
+            }),
+            dataType: 'json',
+            contentType: 'application/json',
+            success: function() {
+               // alert('Die zugehörige Statistik wurde erfolgreich gelöscht');
+            },
+            error: function(result) {
+                console.log(result);
+                alert("Es gab einen Fehler beim Hochladen der löschen der zugehörigen Statistik Kategorie, bitte kontaktieren Sie den Datenbank Admin");
+            }
+            
+
+        })
+        
+}
+
+
+   

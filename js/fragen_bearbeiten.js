@@ -15,7 +15,6 @@ function loadData() {
             console.table(data);
             if (data == undefined || data == null || data.length == 0) {
                 alert('Es konnten keine Kategorien geladen werden, wsl. sind noch keine Kategorien vorhanden!');
-                window.location.href = './test_lernen.html';
             } else {
 
                 var string = JSON.stringify(data)
