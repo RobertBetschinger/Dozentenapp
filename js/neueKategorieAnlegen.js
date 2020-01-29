@@ -190,15 +190,12 @@ loadData();
         if(select.options.length === 0){
         
             lastValue = parseFloat(1);
-            alert("Firstselect")
-            alert(lastValue)
+           
         }
         else{
             var lastValue = select.options[select.options.length - 1].lang;
             lastValue++
-            alert("Second Select")
-            alert(select.options[select.options.length - 1].lang)
-            alert(lastValue)
+           
         }
         categoryName = document.forms["ÜberkategorieForm"]["Überkategorie"].value;
         if(categoryName ==""){
