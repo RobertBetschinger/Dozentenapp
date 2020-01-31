@@ -11,7 +11,7 @@
     <meta name="author" content="">
     <link rel="stylesheet" href="css/tailwindStyle.css">
     <script src="js/navigation.js"></script>
-
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <style>
         .gradient {
             background: linear-gradient(90deg, #6a6b6a 0%, #6e79a0 100%);
@@ -24,6 +24,68 @@
 
 </head>
 
+<script>
+    var arrLang = {
+       'en': {
+         'UR' :'University of Regensburg',
+         'desc': 'This is my description',
+         'DZ':'Lecturers App',
+         'NFA':'New Questions',
+         'NKA':'New Categorys',
+         'BF':' Existing Questions',
+         'LÜ':'Performance',
+         'NÜ':'Usage',
+         'Kurzanleitung':'Quick guide',
+         'li0':'You are using the lecturer app for the first time and want to upload questions to make them available to your students? Just follow these steps.',
+         'li1':'First create a new subcategory on the "Create new category" page',
+         'li2':'Then create a new subcategory at the associated supercategory you just created.',
+         'li3':'Switch to the page "Create new questions" and create your questions in the corresponding subcategory.',
+         'li4':'Testen Sie ihre Fragen in der "Studentenapp"',
+         'li5':'You can edit or delete incorrect questions in the "Existing questions" page.',
+         'li6':'After your students have processed the questions, you can view the statistics in the "Performance Overview" page.',
+         'desc':'Within the project seminar two web apps were developed to provide students with a simple and modern way to test and check their knowledge. The lecturer app is the part of the project seminar that is intended for professors and chairs. This web service allows the creation of questions and questionnaires divided into categories and subcategories. The student app offers the students the possibility to learn the questions and to test them realistically in an exam. The database is identical and is synchronized by a RestApi and a central MongoDB server. The idea of this project is based on two existing Web Apps, but these have been completely redesigned, since they only represent front-end applications without interfaces or a central dataset, which is absolutely necessary for the logical use of this project. During the redevelopment of these apps, the UI was also completely reworked. In contrast, modern UI standards and mandatory criteria such as smartphone compatibility and ease of use were developed. The new logic behind the questions now makes it possible to classify several possible answers as true at the same time. Modules of a chair can be divided into "categories" and subdivided into "subcategories". Questions can be easily edited or deleted afterwards.'
+
+       },
+       'deutsch': {
+        'UR' : 'Universität Regensburg',
+         'Abstieg':'Dies ist meine Beschreibung' ,
+         'DZ': 'Dozenten-App',
+         'NFA': 'Neue Fragen',
+         'NKA': 'Neue Kategorien',
+         'BF': 'Bestehende Fragen',
+         'LÜ': 'Leistung',
+         'NÜ': 'Verwendung',
+         'Kurzanleitung': 'Kurzanleitung',
+         'li0': 'Sie benutzen die Dozenten-App zum ersten Mal und möchten Fragen hochladen, um sie Ihren Studenten zur Verfügung zu stellen? Folgen Sie einfach diesen Schritten.',
+         'li1':'Erstellen Sie zunächst eine neue Unterkategorie auf der Seite "Neue Kategorie erstellen',
+         'li2': 'Erstellen Sie dann eine neue Unterkategorie in der zugehörigen Superkategorie, die Sie gerade erstellt haben',
+         'li3':'Wechseln Sie auf die Seite "Neue Fragen erstellen" und erstellen Sie Ihre Fragen in der entsprechenden Unterkategorie.',
+         'li4':'Testen Sie ihre Fragen in der "Studentenapp"',
+         'li5':'Sie können fehlerhafte Fragen auf der Seite "Vorhandene Fragen" bearbeiten oder löschen',
+         'li6':'Nachdem Ihre Studierenden die Fragen bearbeitet haben, können Sie die Statistiken auf der Seite "Leistungsübersicht" einsehen.',
+         'desc':'Im Rahmen des Projektseminars wurde zwei Web-Apps entwickelt, um Studenten eine einfache und moderene Möglichkeit zu bieten ihr Wissen zu testen und zu prüfen. Die Dozentenapp ist dabei der Part des Projektseminar der für die Professoren und Lehrstühle gedacht ist. Dieser Web-Service ermöglicht das erstellen von Fragen bzw. Fragebögen eingeteilt in Kategorien und Subkategorien. Die Studentenapp bietet den Studenten dann die Möglichkeit die Fragen zu lernen und realitätsnah in einer Prüfung abzufragen. Der Datenbestand ist dabei der identisch und wird mittels einer RestApi und einem zentralen MongoDB Server synchronisiert. Die Idee dieses Projekts fußt auf zwei bereits vorhandenen Web-Apps, diese wurden jedoch komplett überarbeitet, da Sie lediglich Front-End Applications ohne Schnittstellen bzw. einen zentralen Datenbestand, der für die logische Verwendung dieses Projekts zwingend notwendig ist, dargestellt haben. Bei der Neu-Entwicklung dieser Apps wurde auch das UI komplett überarbeit und hingegen modernen UI-Standarts sowie Muss-Kriterien wie z.B eine Smartphone-Kompatibiität und eine einfache Bedienbarkeit entwickelt. Die neue Logik hinter den Fragen ermöglicht es nun auch mehrere Antwortmöglichkeiten gleichzeitig als Wahr einzustufen. Module eines Lehrstuhls können dabei in "Kategorien" eingeteilt werden, und zugehörige Unterthemen in "Subkategorien" einzuteilen. Fragen können im Nachhinein einfach bearbeitet oder gelöscht werden.'
+
+
+       
+       }
+     };
+
+     // Process translation
+   $(function() {
+     $('.translate').click(function() {
+       var lang = $(this).attr('id');
+
+       $('.lang').each(function(index, item) {
+         $(this).text(arrLang[lang][$(this).attr('key')]);
+       });
+     });
+   });
+     
+     
+     </script>
+   
+
+
 <body class="leading-normal tracking-normal text-white gradient">
     <header class="lg:px-16 px-6 bg-blue-500 h-auto md:h-24 flex flex-wrap items-center lg:py-0 py-2">
 
@@ -31,7 +93,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="w-4 h-4 opacity-75">
                 <path d="M3.33 8L10 12l10-6-10-6L0 6h10v2H3.33zM0 8v8l2-2.22V9.2L0 8zm10 12l-5-3-2-1.2v-6l7 4.2 7-4.2v6L10 20z" />
             </svg>
-            <span class="font-semibold text-2xl tracking-tight m-2">Universität Regensburg</span>
+            <span class="font-semibold text-2xl tracking-tight m-2 lang " key="UR">Universität Regensburg</span>
         </div>
 
         <label for="menu-toggle" class="pointer-cursor lg:hidden block">
@@ -45,56 +107,67 @@
         <div class="hidden lg:flex lg:items-center lg:w-auto w-full" id="menu">
             <div class="text-sm lg:flex-grow ">
                 <a href="#responsive-header" class="block mt-4 w-1/8 pl-6 pr-6 lg:inline-block lg:mt-0 text-teal-100 hover:text-white mr-4 text-base">
-                    <button id="existing_questions_button" class="button_main" type="button" onclick="callDozentenappPage()">Dozentenapp</button>
+                    <button id="existing_questions_button" class="button_main lang" type="button" key="DZ" onclick="callDozentenappPage()">Dozentenapp</button>
                     <a href="#responsive-header" class="block mt-4  w-1/8 pl-6  pr-6 lg:inline-block lg:mt-0 text-teal-100 hover:text-white mr-4 text-base">
-                        <button id="new_question_button" class="button_main" type="button" onclick="callNewQuestionsPage()">Neue Frage anlegen</button>
+                        <button id="new_question_button" class="button_main lang" type="button" key="NFA" onclick="callNewQuestionsPage()">Neue Frage anlegen</button>
                     </a>
                     <a href="#responsive-header" class="block mt-4 w-1/8  pl-6  pr-6 lg:inline-block lg:mt-0 text-teal-100 hover:text-white text-base">
-                        <button id="new_category_button" class="button_main" type="button" onclick="callNewCategoryPage()">Neue Kategorie anlegen</button>
+                        <button id="new_category_button" class="button_main lang" type="button" key="NKA" onclick="callNewCategoryPage()">Neue Kategorie anlegen</button>
                     </a>
                     <a href="#responsive-header" class="block mt-4 w-1/8 pl-6  pr-6 lg:inline-block lg:mt-0 text-teal-100 hover:text-white text-base">
-                        <button id="existing_questions_button" class="button_main" type="button" onclick="callExistingQuestionsPage()">Bestehende Fragen </button>
+                        <button id="existing_questions_button" class="button_main lang" type="button" key="BF" onclick="callExistingQuestionsPage()">Bestehende Fragen </button>
                     </a>
                     <a href="#responsive-header" class="block mt-4 w-1/8  pl-6  pr-6 lg:inline-block lg:mt-0 text-teal-100 hover:text-white text-base">
-                        <button id="existing_questions_button" class="button_main" type="button" onclick="callStudentPerformancePage()">Leistungsübersicht </button>
+                        <button id="existing_questions_button" class="button_main lang" type="button" key="LÜ" onclick="callStudentPerformancePage()">Leistungsübersicht </button>
                  </a>
                     <a href="#responsive-header" class="block mt-4 w-1/8 pl-6  pr-6 lg:inline-block lg:mt-0 text-teal-100 hover:text-white text-base">
-                        <button id="existing_questions_button" class="button_main" type="button" onclick="callUsageOverviewPage()">Nutzungsübersicht </button>
+                        <button id="existing_questions_button" class="button_main lang" type="button" key="NÜ" onclick="callUsageOverviewPage()">Nutzungsübersicht </button>
                  </a>
+                 <a href="#responsive-header" class="block mt-4 w-1/8 pl-6  pr-6 lg:inline-block lg:mt-0 text-teal-100 hover:text-white text-base">
+                    <button id="deutsch" class="translate">Deutsch</button>
+                </a>
+                <a href="#responsive-header" class="block mt-4 w-1/8 pl-6  pr-6 lg:inline-block lg:mt-0 text-teal-100 hover:text-white text-base">
+                    <button id="en" class="translate">Englisch</button>
+                </a>
+
+                
             </div>
 
         </div>
 
     </header>
 
-    <div class=" flex-col flex  mx-auto m-2 mx-4 w-2/3">
+    <div 
+    
+    class=" flex-col flex  mx-auto m-2 mx-4 w-2/3">
 
-        <h1 class="text-4xl font-bold text-center">Dozentenapp</h1>
+        <h1 class="text-4xl font-bold lang text-center" key="DZ">Dozentenapp</h1>
+
         
 
-        <p class=" p-4">Im Rahmen des Projektseminars wurde zwei Web-Apps entwickelt, um Studenten eine einfache und moderene Möglichkeit zu bieten ihr Wissen zu testen und zu prüfen. Die Dozentenapp ist dabei der Part des Projektseminar der für die Professoren und Lehrstühle gedacht ist. Dieser Web-Service ermöglicht das erstellen von Fragen bzw. Fragebögen eingeteilt in Kategorien und Subkategorien. Die Studentenapp bietet den Studenten dann die Möglichkeit die Fragen zu lernen und realitätsnah in einer Prüfung abzufragen. Der Datenbestand ist dabei der identisch und wird mittels 
+        <p class="lang p-4" key="desc">Im Rahmen des Projektseminars wurde zwei Web-Apps entwickelt, um Studenten eine einfache und moderene Möglichkeit zu bieten ihr Wissen zu testen und zu prüfen. Die Dozentenapp ist dabei der Part des Projektseminar der für die Professoren und Lehrstühle gedacht ist. Dieser Web-Service ermöglicht das erstellen von Fragen bzw. Fragebögen eingeteilt in Kategorien und Subkategorien. Die Studentenapp bietet den Studenten dann die Möglichkeit die Fragen zu lernen und realitätsnah in einer Prüfung abzufragen. Der Datenbestand ist dabei der identisch und wird mittels 
             einer RestApi und einem zentralen MongoDB Server synchronisiert. Die Idee dieses Projekts fußt auf zwei bereits vorhandenen Web-Apps, diese wurden jedoch komplett überarbeitet, da Sie lediglich Front-End Applications ohne Schnittstellen bzw. einen zentralen Datenbestand, der für die logische Verwendung dieses Projekts zwingend
              notwendig ist, dargestellt haben. Bei der Neu-Entwicklung dieser Apps wurde auch das UI komplett überarbeit und hingegen modernen UI-Standarts sowie Muss-Kriterien wie z.B eine Smartphone-Kompatibiität und eine einfache Bedienbarkeit entwickelt. Die neue Logik hinter den Fragen ermöglicht es nun auch mehrere Antwortmöglichkeiten gleichzeitig als Wahr einzustufen. Module eines Lehrstuhls können dabei in "Kategorien" eingeteilt werden, und zugehörige Unterthemen in "Subkategorien" einzuteilen. Fragen können im Nachhinein einfach bearbeitet oder gelöscht werden. </p>
 
         
         <div class="border-b my-6"></div>
-        <h1 class="text-3xl font-bold text-center">Kurzanleitung</h1>
-        <p class=" p-4">Sie benutzen die Dozentenapp zum ersten Mal und wollen Fragen hochladen um sie Ihren Studenten zur Verfügung zu stellen? Folgen Sie einfach folgenden Schritten.</p>
+        <h1 class="text-3xl font-bold text-center lang" key="Kurzanleitung">Kurzanleitung</h1>
+        <p class=" p-4 lang" key="li0">Sie benutzen die Dozentenapp zum ersten Mal und wollen Fragen hochladen um sie Ihren Studenten zur Verfügung zu stellen? Folgen Sie einfach folgenden Schritten.</p>
         <ol class="p-4 font-semibold list-decimal">
-            <li class="m-2">Erstellen Sie zunächst eine neue Überkategorie auf der Seite "Neue Kategorie anlegen"</li>
-            <li class="m-2">Erstellen Sie anschließend einer neue Subkategorie bei der zugeörigen gerade erstellen Überkategorie.</li>
-            <li class="m-2">Wechseln die auf die Seite "Neue Fragen anlegen" und legen Sie ihre Fragen in der entsprechenden SubKategorie an.</li>
-            <li class="m-2">Testen Sie ihre Fragen in der "Studentenapp"</li>
-            <li class="m-2">Fehlerhafte Fragen können sie in der Seite "Bestehende Fragen" bearbeiten oder löschen</li>
-            <li class="m-2">Nachdem ihre Studenten die Fragen bearbeitet haben, können Sie die Statistiken in der Seite "Leistungsübersicht einsehen".</li>
+            <li class="m-2 lang" key="li1">Erstellen Sie zunächst eine neue Überkategorie auf der Seite "Neue Kategorie anlegen"</li>
+            <li class="m-2 lang" key="li2">Erstellen Sie anschließend einer neue Subkategorie bei der zugeörigen gerade erstellen Überkategorie.</li>
+            <li class="m-2 lang" key="li3">Wechseln die auf die Seite "Neue Fragen anlegen" und legen Sie ihre Fragen in der entsprechenden SubKategorie an.</li>
+            <li class="m-2 lang" key="li4">Testen Sie ihre Fragen in der "Studentenapp"</li>
+            <li class="m-2 lang" key="li5">Fehlerhafte Fragen können sie in der Seite "Bestehende Fragen" bearbeiten oder löschen</li>
+            <li class="m-2 lang" key="li6">Nachdem ihre Studenten die Fragen bearbeitet haben, können Sie die Statistiken in der Seite "Leistungsübersicht einsehen".</li>
             
           </ol>
           <div class="border-b my-6"></div>
 
-        
+         
     </div>
-    
 
+    
 </body>
 
 </html>
