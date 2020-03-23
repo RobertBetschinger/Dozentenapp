@@ -13,6 +13,7 @@ The combination of both apps enables you to implement an interactive form of tea
  
 ## Contact details
 To get in touch about the project, please contact Ludwig Englbrecht.
+
 E-Mail: Ludwig.Englbrecht@wiwi.uni-regensburg.de
 Twitter: [LJESec](https://twitter.com/LJESec)
 
@@ -22,7 +23,7 @@ Twitter: [LJESec](https://twitter.com/LJESec)
 * ???
 
 # Disclaimer
-This app is published with the aim of being used for educational purposes and to help improve the form of teaching. Some features are still in development and we not responsible for the misuse of this project.
+This app is published with the aim of being used for educational purposes and to help improve the form of teaching. Some features are still in development and we are not responsible for the misuse of this project.
 
 
 
