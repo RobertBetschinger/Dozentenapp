@@ -1,4 +1,4 @@
-# A web-based Quiz-App with Peer-Instruction Features (coolName)
+# A web-based Quiz-App with Peer-Instruction Features (Lecturer)
 
 This is the **lecturer app** for use in teaching. The corresponding student app can be found here: (https://github.com/laefrost/Studapp). Please note that the App is implemented as a client/server architecture.
 
