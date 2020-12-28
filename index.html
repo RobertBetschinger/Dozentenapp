@@ -27,7 +27,7 @@
 <script>
     var arrLang = {
        'en': {
-         'UR' :'University of Regensburg',
+         'UR' :'Course Guidance Quiz',
          'desc': 'This is my description',
          'DZ':'Lecturers App',
          'NFA':'New Questions',
@@ -47,26 +47,23 @@
 
        },
        'deutsch': {
-        'UR' : 'Universität Regensburg',
+        'UR' : 'Studienberatungsquiz',
          'Abstieg':'Dies ist meine Beschreibung' ,
-         'DZ': 'Dozenten-App',
+         'DZ': 'Dozentenapp',
          'NFA': 'Neue Fragen',
          'NKA': 'Neue Kategorien',
          'BF': 'Bestehende Fragen',
          'LÜ': 'Leistungübersicht',
          'NÜ': 'Nutzungsübersicht',
          'Kurzanleitung': 'Kurzanleitung',
-         'li0': 'Sie benutzen die Dozenten-App zum ersten Mal und möchten Fragen hochladen, um sie Ihren Studenten zur Verfügung zu stellen? Folgen Sie einfach diesen Schritten.',
+         'li0': 'Sie benutzen die Dozenten-App zum ersten Mal und möchten Fragen hochladen, um sie Ihren verzweifelten Studierenden zur Verfügung zu stellen? Folgen Sie einfach diesen Schritten.',
          'li1':'Erstellen Sie zunächst eine neue Unterkategorie auf der Seite "Neue Kategorie erstellen',
          'li2': 'Erstellen Sie dann eine neue Unterkategorie in der zugehörigen Superkategorie, die Sie gerade erstellt haben',
          'li3':'Wechseln Sie auf die Seite "Neue Fragen erstellen" und erstellen Sie Ihre Fragen in der entsprechenden Unterkategorie.',
          'li4':'Testen Sie ihre Fragen in der "Studentenapp"',
          'li5':'Sie können fehlerhafte Fragen auf der Seite "Vorhandene Fragen" bearbeiten oder löschen',
          'li6':'Nachdem Ihre Studierenden die Fragen bearbeitet haben, können Sie die Statistiken auf der Seite "Leistungsübersicht" einsehen.',
-         'desc':'Im Rahmen des Projektseminars wurde zwei Web-Apps entwickelt, um Studenten eine einfache und moderene Möglichkeit zu bieten ihr Wissen zu testen und zu prüfen. Die Dozentenapp ist dabei der Part des Projektseminar der für die Professoren und Lehrstühle gedacht ist. Dieser Web-Service ermöglicht das erstellen von Fragen bzw. Fragebögen eingeteilt in Kategorien und Subkategorien. Die Studentenapp bietet den Studenten dann die Möglichkeit die Fragen zu lernen und realitätsnah in einer Prüfung abzufragen. Der Datenbestand ist dabei der identisch und wird mittels einer RestApi und einem zentralen MongoDB Server synchronisiert. Die Idee dieses Projekts fußt auf zwei bereits vorhandenen Web-Apps, diese wurden jedoch komplett überarbeitet, da Sie lediglich Front-End Applications ohne Schnittstellen bzw. einen zentralen Datenbestand, der für die logische Verwendung dieses Projekts zwingend notwendig ist, dargestellt haben. Bei der Neu-Entwicklung dieser Apps wurde auch das UI komplett überarbeit und hingegen modernen UI-Standarts sowie Muss-Kriterien wie z.B eine Smartphone-Kompatibiität und eine einfache Bedienbarkeit entwickelt. Die neue Logik hinter den Fragen ermöglicht es nun auch mehrere Antwortmöglichkeiten gleichzeitig als Wahr einzustufen. Module eines Lehrstuhls können dabei in "Kategorien" eingeteilt werden, und zugehörige Unterthemen in "Subkategorien" einzuteilen. Fragen können im Nachhinein einfach bearbeitet oder gelöscht werden.'
-
-
-       
+         'desc':'Im Rahmen des Projektseminars wurde zwei Web-Apps entwickelt, um Studenten eine einfache und moderene Möglichkeit zu bieten ihr Wissen zu testen und zu prüfen. Die Dozentenapp ist dabei der Part des Projektseminar der für die Professoren und Lehrstühle gedacht ist. Dieser Web-Service ermöglicht das erstellen von Fragen bzw. Fragebögen eingeteilt in Kategorien und Subkategorien. Die Studentenapp bietet den Studenten dann die Möglichkeit die Fragen zu lernen und realitätsnah in einer Prüfung abzufragen. Der Datenbestand ist dabei der identisch und wird mittels einer RestApi und einem zentralen MongoDB Server synchronisiert. Die Idee dieses Projekts fußt auf zwei bereits vorhandenen Web-Apps, diese wurden jedoch komplett überarbeitet, da Sie lediglich Front-End Applications ohne Schnittstellen bzw. einen zentralen Datenbestand, der für die logische Verwendung dieses Projekts zwingend notwendig ist, dargestellt haben. Bei der Neu-Entwicklung dieser Apps wurde auch das UI komplett überarbeit und hingegen modernen UI-Standarts sowie Muss-Kriterien wie z.B eine Smartphone-Kompatibiität und eine einfache Bedienbarkeit entwickelt. Die neue Logik hinter den Fragen ermöglicht es nun auch mehrere Antwortmöglichkeiten gleichzeitig als Wahr einzustufen. Module eines Lehrstuhls können dabei in "Kategorien" eingeteilt werden, und zugehörige Unterthemen in "Subkategorien" einzuteilen. Fragen können im Nachhinein einfach bearbeitet oder gelöscht werden.'  
        }
      };
 
@@ -94,7 +91,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="w-4 h-4 opacity-75">
                 <path d="M3.33 8L10 12l10-6-10-6L0 6h10v2H3.33zM0 8v8l2-2.22V9.2L0 8zm10 12l-5-3-2-1.2v-6l7 4.2 7-4.2v6L10 20z" />
             </svg>
-            <span class="font-semibold text-2xl tracking-tight m-2 lang " key="UR">Universität Regensburg</span>
+            <span class="font-semibold text-2xl tracking-tight m-2 lang " key="UR">Studienberatungsquiz</span>
         </div>
 
         <label for="menu-toggle" class="pointer-cursor lg:hidden block">
@@ -148,14 +145,14 @@
 
         
 
-        <p class="lang p-4" key="desc">Im Rahmen des Projektseminars wurde zwei Web-Apps entwickelt, um Studenten eine einfache und moderene Möglichkeit zu bieten ihr Wissen zu testen und zu prüfen. Die Dozentenapp ist dabei der Part des Projektseminar der für die Professoren und Lehrstühle gedacht ist. Dieser Web-Service ermöglicht das erstellen von Fragen bzw. Fragebögen eingeteilt in Kategorien und Subkategorien. Die Studentenapp bietet den Studenten dann die Möglichkeit die Fragen zu lernen und realitätsnah in einer Prüfung abzufragen. Der Datenbestand ist dabei der identisch und wird mittels 
+        <p class="lang p-4 hidden"  key="desc">Im Rahmen des Projektseminars wurde zwei Web-Apps entwickelt, um Studenten eine einfache und moderene Möglichkeit zu bieten ihr Wissen zu testen und zu prüfen. Die Dozentenapp ist dabei der Part des Projektseminar der für die Professoren und Lehrstühle gedacht ist. Dieser Web-Service ermöglicht das erstellen von Fragen bzw. Fragebögen eingeteilt in Kategorien und Subkategorien. Die Studentenapp bietet den Studenten dann die Möglichkeit die Fragen zu lernen und realitätsnah in einer Prüfung abzufragen. Der Datenbestand ist dabei der identisch und wird mittels 
             einer RestApi und einem zentralen MongoDB Server synchronisiert. Die Idee dieses Projekts fußt auf zwei bereits vorhandenen Web-Apps, diese wurden jedoch komplett überarbeitet, da Sie lediglich Front-End Applications ohne Schnittstellen bzw. einen zentralen Datenbestand, der für die logische Verwendung dieses Projekts zwingend
              notwendig ist, dargestellt haben. Bei der Neu-Entwicklung dieser Apps wurde auch das UI komplett überarbeit und hingegen modernen UI-Standarts sowie Muss-Kriterien wie z.B eine Smartphone-Kompatibiität und eine einfache Bedienbarkeit entwickelt. Die neue Logik hinter den Fragen ermöglicht es nun auch mehrere Antwortmöglichkeiten gleichzeitig als Wahr einzustufen. Module eines Lehrstuhls können dabei in "Kategorien" eingeteilt werden, und zugehörige Unterthemen in "Subkategorien" einzuteilen. Fragen können im Nachhinein einfach bearbeitet oder gelöscht werden. </p>
 
         
         <div class="border-b my-6"></div>
         <h1 class="text-3xl font-bold text-center lang" key="Kurzanleitung">Kurzanleitung</h1>
-        <p class=" p-4 lang" key="li0">Sie benutzen die Dozentenapp zum ersten Mal und wollen Fragen hochladen um sie Ihren Studenten zur Verfügung zu stellen? Folgen Sie einfach folgenden Schritten.</p>
+        <p class=" p-4 lang" key="li0">Sie benutzen die Dozentenapp zum ersten Mal und wollen Fragen hochladen um sie Ihren verzweifelten Studierenden zur Verfügung zu stellen? Folgen Sie einfach folgenden Schritten.</p>
         <ol class="p-4 font-semibold list-decimal">
             <li class="m-2 lang" key="li1">Erstellen Sie zunächst eine neue Überkategorie auf der Seite "Neue Kategorie anlegen"</li>
             <li class="m-2 lang" key="li2">Erstellen Sie anschließend einer neue Subkategorie bei der zugeörigen gerade erstellen Überkategorie.</li>

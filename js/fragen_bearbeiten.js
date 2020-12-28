@@ -107,6 +107,23 @@ function fillInQuestionnHTML(json) {
     document.forms["FragenForm"]["Wahrheit2"].value = json[0].answers[1].trueOrFalse;
     document.forms["FragenForm"]["Wahrheit3"].value = json[0].answers[2].trueOrFalse;
     document.forms["FragenForm"]["Wahrheit4"].value = json[0].answers[3].trueOrFalse;
+    
+    
+
+    
+    if(json[0].triggerQuestion){
+        console.log("Ändere Checkbox")
+        document.forms["FragenForm"]["TriggerQuestion"].checked = true;
+        document.getElementById("triggerTypeField").disabled =  false;   
+    }
+    else{
+        document.getElementById("triggerTypeField").disabled =  true;   
+        document.getElementById("triggerTypeField").value =  '';   
+    }
+    if(json[0].triggerType != undefined){
+        document.getElementById("triggerTypeField").value = json[0].triggerType;
+    }
+
     document.forms["FragenForm"]["id"].value = json[0]._id;
     document.forms["FragenForm"]["index"].value = 0
 }
@@ -124,6 +141,23 @@ function swapQuestions(json, index) {
     document.forms["FragenForm"]["Wahrheit2"].value = json.answers[1].trueOrFalse;
     document.forms["FragenForm"]["Wahrheit3"].value = json.answers[2].trueOrFalse;
     document.forms["FragenForm"]["Wahrheit4"].value = json.answers[3].trueOrFalse;
+
+    if(json.triggerQuestion){
+        console.log("Ändere Checkbox")
+        document.forms["FragenForm"]["TriggerQuestion"].checked = true;
+        document.getElementById("triggerTypeField").disabled =  false;   
+    } else{
+        document.forms["FragenForm"]["TriggerQuestion"].checked = false;
+        document.getElementById("triggerTypeField").disabled =  true;   
+        document.getElementById("triggerTypeField").value = '';
+    }
+
+    if(json.triggerType != undefined){
+        document.getElementById("triggerTypeField").value = json.triggerType;
+    }
+
+   
+
     document.forms["FragenForm"]["id"].value = json._id;
     document.forms["FragenForm"]["index"].value = index;
 }
@@ -191,11 +225,9 @@ function loadQuestions(cValue, sValue) {
 
 const myForm = document.getElementById("FragenForm");
 
-$(document).ready(function() {
-    document.querySelector('#update').addEventListener("click", update)
-});
 
-function update() {
+
+function updateee() {
     console.log("Update")
 
     var x = document.forms["FragenForm"]["FragenText"].value;
@@ -204,8 +236,10 @@ function update() {
     var ü = document.forms["FragenForm"]["Antwort3"].value;
     var l = document.forms["FragenForm"]["Antwort4"].value;
     var questionID = document.forms["FragenForm"]["id"].value;
-
-    if (formValidation(x, y, z, ü, l)) {
+    var TriggerQuestion = document.forms["FragenForm"]["TriggerQuestion"].checked
+    var TriggerType = document.forms["FragenForm"]["Trigger-Typ"].value;
+    
+    if (formValidation(x, y, z, ü, l,TriggerQuestion,TriggerType)) {
 
         boolean = turnBackRadioButton(document.getElementsByName('Wahrheit1'));
         boolean1 = turnBackRadioButton(document.getElementsByName('Wahrheit2'));
@@ -222,7 +256,12 @@ function update() {
         var category_id = optgroup.value
         var category_name = optgroup.label
 
-        sendQuestion(x, y, z, ü, l, boolean, boolean1, boolean2, boolean3, category_name, category_id, subcategory_id, sValue, questionID);
+        if(!TriggerQuestion){
+            TriggerType =''
+        }
+
+        
+        sendQuestion(x, y, z, ü, l, boolean, boolean1, boolean2, boolean3, category_name, category_id, subcategory_id, sValue, questionID,TriggerQuestion,TriggerType);
         fragenArray = null;
     }
     document.getElementById("FragenForm").reset();
@@ -255,7 +294,7 @@ function deleteQuestion(questionID) {
     })
 }
 
-function sendQuestion(x, y, z, ü, l, boolean, boolean1, boolean2, boolean3, category_name, category_id, subcategory_id, subcategory_name, questionID) {
+function sendQuestion(x, y, z, ü, l, boolean, boolean1, boolean2, boolean3, category_name, category_id, subcategory_id, subcategory_name, questionID,triggerQuestion,triggerType) {
     console.log("sendQuestion")
     $.ajax({
         type: 'PATCH',
@@ -267,6 +306,8 @@ function sendQuestion(x, y, z, ü, l, boolean, boolean1, boolean2, boolean3, cat
             "category_name": category_name,
             "subcategory_id": subcategory_id,
             "subcategory_name": subcategory_name,
+            "triggerQuestion":triggerQuestion,
+            "triggerType":triggerType,       
             "answer": y,
             "boolean": boolean,
             "answer1": z,
@@ -289,7 +330,7 @@ function sendQuestion(x, y, z, ü, l, boolean, boolean1, boolean2, boolean3, cat
     })
 }
 
-function formValidation(x, y, z, ü, l) {
+function formValidation(x, y, z, ü, l,TriggerQuestion,TriggerType) {
     console.log("Test der Validation")
     if (x == "") {
         window.alert("Bitte geben sie eine Frage ein.");
@@ -305,7 +346,7 @@ function formValidation(x, y, z, ü, l) {
 
         window.alert("Bitte geben sie die dritte Antwortmöglichkeit ein.");
         return false;
-    } else if (l = "") {
+    } else if (l == "") {
         window.alert("Bitte geben sie die vierte Antwortmöglichkeit ein.");
         return false;
     } else if (!validateRaioButtons(document.getElementsByName('Wahrheit1'))) {
@@ -319,6 +360,9 @@ function formValidation(x, y, z, ü, l) {
         return false;
     } else if (!validateRaioButtons(document.getElementsByName('Wahrheit4'))) {
         window.alert("Bitte geben Sie an ob die vierte Frage wahr oder Falsch sein soll!");
+        return false;
+    } else if(TriggerQuestion == true && TriggerType == "" ){
+        window.alert("Bitte geben sie einen Trigger Typ an!");
         return false;
     } else {
         return true;
@@ -344,3 +388,13 @@ function turnBackRadioButton(radios) {
         }
     }
 }
+
+TriggerQuestion.addEventListener( 'change', function() {
+    console.log("Function Reached")
+    if(this.checked) {
+        document.getElementById("triggerTypeField").disabled = false;
+    } else {
+        document.getElementById("triggerTypeField").disabled = true;
+        document.getElementById("triggerTypeField").value = '';
+    } 
+});
